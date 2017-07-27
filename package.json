@@ -1,6 +1,6 @@
 {
   "name": "@mcph/lwip",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "typings": "typings.d.ts",
   "dependencies": {
