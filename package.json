@@ -1,5 +1,5 @@
 {
-  "name": "lwip",
+  "name": "@mcph/lwip",
   "version": "0.0.9",
   "main": "index.js",
   "dependencies": {
