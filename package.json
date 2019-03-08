@@ -21,7 +21,12 @@
     "should": "^8.3.2"
   },
   "directories": {
-    "example": "examples"
+    "example": "examples",
+    "lib": "lib",
+    "test": "tests"
+  },
+  "engines": {
+    "node": ">=6"
   },
   "gypfile": true,
   "homepage": "https://github.com/EyalAr/lwip",
