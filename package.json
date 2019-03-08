@@ -65,6 +65,9 @@
   ],
   "license": "MIT",
   "main": "index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": "EyalAr/lwip.git",
   "scripts": {
     "cover": "npm run cover:actual",
