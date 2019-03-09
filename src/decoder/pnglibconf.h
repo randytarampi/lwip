@@ -13,7 +13,6 @@
 /* Derived from: scripts/pnglibconf.dfa */
 #ifndef PNGLCONF_H
 #define PNGLCONF_H
-
 #include <node_version.h>
 /* options */
 #define PNG_16BIT_SUPPORTED
@@ -97,7 +96,7 @@
 #define PNG_READ_tIME_SUPPORTED
 #define PNG_READ_tRNS_SUPPORTED
 #define PNG_READ_zTXt_SUPPORTED
-#define PNG_SAVE_INT_32_SUPPORTED
+//#define PNG_SAVE_INT_32_SUPPORTED
 #define PNG_SAVE_UNKNOWN_CHUNKS_SUPPORTED
 #define PNG_SEQUENTIAL_READ_SUPPORTED
 #define PNG_SETJMP_SUPPORTED
@@ -163,9 +162,9 @@
 #define PNG_WEIGHT_SHIFT 8
 #define PNG_ZBUF_SIZE 8192
 #if NODE_VERSION_AT_LEAST(8, 0, 0)
-#  define PNG_ZLIB_VERNUM 0x12b0
+#define PNG_ZLIB_VERNUM 0x12b0
 #else
-#  define PNG_ZLIB_VERNUM 0x1280
+#define PNG_ZLIB_VERNUM 0x1280
 #endif
 #define PNG_Z_DEFAULT_COMPRESSION (-1)
 #define PNG_Z_DEFAULT_NOFILTER_STRATEGY 0
