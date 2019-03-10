@@ -12,6 +12,7 @@
 #include <v8.h>
 extern "C" {
 #include "jpeglib.h"
+#include "getarg.h"
 }
 #include <png.h>
 #include <zlib.h>

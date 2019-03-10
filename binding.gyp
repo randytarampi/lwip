@@ -75,6 +75,7 @@
             "src/lib/gif/gif_err.c",
             "src/lib/gif/gifalloc.c",
             "src/lib/gif/openbsd-reallocarray.c",
+            "src/lib/gif/getarg.c",
         ],
         'include_dirs': [
             '<!(node -e "require(\'nan\')")',
@@ -192,6 +193,7 @@
             "src/lib/gif/gif_hash.c",
             "src/lib/gif/quantize.c",
             "src/lib/gif/openbsd-reallocarray.c",
+            "src/lib/gif/getarg.c",
         ],
         'include_dirs': [
             '<!(node -e "require(\'nan\')")',

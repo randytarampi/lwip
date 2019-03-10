@@ -1,0 +1,15 @@
+[submodule "src/lib/zlib"]
+	path = src/lib/zlib
+	url = https://github.com/madler/zlib.git
+[submodule "src/lib/png"]
+	path = src/lib/png
+	url = https://github.com/glennrp/libpng.git
+[submodule "src/lib/gif"]
+	path = src/lib/gif
+	url = git://git.code.sf.net/p/giflib/code
+[submodule "src/lib/cimg"]
+	path = src/lib/cimg
+	url = https://github.com/dtschump/CImg.git
+[submodule "src/lib/jpeg"]
+	path = src/lib/jpeg
+	url = https://github.com/libjpeg-turbo/ijg.git

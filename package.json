@@ -100,6 +100,7 @@
     "coveralls": "run-script-os",
     "coveralls:darwin:linux": "cat ./coverage/lcov.info | coveralls",
     "coveralls:win32": "type ./coverage/lcov.info | coveralls",
+    "preinstall": "git submodule update --init --recursive",
     "install": "node-gyp rebuild -j 8",
     "lint": "npm run lint:js && npm run lint:cpp",
     "lint:cpp": "node-cpplint cpp,h src/**/* $(grep ^.*$ CPPLINT.cfg | sed 's/filter=/filters=/g' | awk '{print \"--\"$0}' ORS=' ' | tr '=' ' ' | tr ',' ' ' | tr '/' '-')\n",
