@@ -13,7 +13,7 @@
     "bindings": "^1.5.0",
     "decree": "^0.0.6",
     "nan": "^2.14.2",
-    "snyk": "^1.685.0"
+    "@snyk/protect": "latest"
   },
   "devDependencies": {
     "@semantic-release/changelog": "^5.0.1",
@@ -88,9 +88,9 @@
     "lint:js": "eslint **/*.js",
     "prepare": "npm run snyk-protect",
     "pretest": "npm run lint:js",
-    "snyk-protect": "snyk protect",
+    "snyk-protect": "snyk-protect",
     "test": "mocha --config ./tests/.mocharc.js tests"
   },
-  "snyk": false,
+  "snyk": true,
   "typings": "typings.d.ts"
 }
