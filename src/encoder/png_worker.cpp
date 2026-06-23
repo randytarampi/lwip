@@ -4,7 +4,7 @@
 #define RGBA_N_CHANNELS 4
 
 EncodeToPngBufferWorker::EncodeToPngBufferWorker(
-    Local<Object> & buff,
+    v8::Local<v8::Object> buff,
     size_t width,
     size_t height,
     int compression,
@@ -16,7 +16,7 @@ EncodeToPngBufferWorker::EncodeToPngBufferWorker(
     _compression(compression), _interlaced(interlaced), _trans(trans), _metadata(metadata),
     _pngbuf(NULL), _pngbufsize(0) {
     SaveToPersistent("buff", buff); // make sure buff isn't GC'ed
-    _pixbuf = (unsigned char *) Buffer::Data(buff);
+    _pixbuf = (unsigned char *) node::Buffer::Data(buff);
 }
 
 EncodeToPngBufferWorker::~EncodeToPngBufferWorker() {}

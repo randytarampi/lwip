@@ -1,6 +1,7 @@
 {
     "targets": [{
         "target_name": "lwip_decoder",
+        "defines": ["Z_PREFIX", "PNG_ARM_NEON_OPT=0"],
         "sources": [
             # LWIP:
             #######
@@ -77,10 +78,10 @@
             "src/lib/gif/openbsd-reallocarray.c",
         ],
         'include_dirs': [
+            'src/lib/zlib',
             '<!(node -e "require(\'nan\')")',
             'src/decoder',
             'src/shared',
-            'src/lib/zlib',
             'src/lib/jpeg',
             'src/lib/cimg',
             'src/lib/png',
@@ -104,7 +105,7 @@
                     'GCC_ENABLE_CPP_EXCEPTIONS': 'YES',
                     'OTHER_CPLUSPLUSFLAGS' : [ '-mmacosx-version-min=10.7',
                           '-stdlib=libc++',
-                          '-std=c++0x']
+                          '-std=c++20']
                 },
                 'include_dirs': ['/usr/include/malloc']
             }],
@@ -123,6 +124,7 @@
         ]
     },{
         "target_name": "lwip_encoder",
+        "defines": ["Z_PREFIX", "PNG_ARM_NEON_OPT=0"],
         "sources": [
             # LWIP:
             #######
@@ -194,10 +196,10 @@
             "src/lib/gif/openbsd-reallocarray.c",
         ],
         'include_dirs': [
+            'src/lib/zlib',
             '<!(node -e "require(\'nan\')")',
             'src/encoder',
             'src/shared',
-            'src/lib/zlib',
             'src/lib/jpeg',
             'src/lib/cimg',
             'src/lib/png',
@@ -221,7 +223,7 @@
                     'GCC_ENABLE_CPP_EXCEPTIONS': 'YES',
                     'OTHER_CPLUSPLUSFLAGS' : [ '-mmacosx-version-min=10.7',
                           '-stdlib=libc++',
-                          '-std=c++0x']
+                          '-std=c++20']
                 },
                 'include_dirs': ['/usr/include/malloc']
             }],
@@ -240,6 +242,7 @@
         ]
     },{
         "target_name": "lwip_image",
+        "defines": ["Z_PREFIX", "PNG_ARM_NEON_OPT=0"],
         "sources": [
             # LWIP:
             #######
@@ -279,7 +282,7 @@
                     'GCC_ENABLE_CPP_EXCEPTIONS': 'YES',
                     'OTHER_CPLUSPLUSFLAGS' : [ '-mmacosx-version-min=10.7',
                           '-stdlib=libc++',
-                          '-std=c++0x']
+                          '-std=c++20']
                 },
                 'include_dirs': ['/usr/include/malloc']
             }],

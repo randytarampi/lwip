@@ -3,7 +3,7 @@
 PasteWorker::PasteWorker(
     size_t left,
     size_t top,
-    Local<Object> & pixbuf,
+    v8::Local<v8::Object> pixbuf,
     size_t width,
     size_t height,
     CImg<unsigned char> * cimg,
@@ -11,7 +11,7 @@ PasteWorker::PasteWorker(
 ): Nan::AsyncWorker(callback), _left(left), _top(top), _width(width),
    _height(height), _cimg(cimg) {
     SaveToPersistent("pixbuf", pixbuf);
-    _pixels = (unsigned char *) Buffer::Data(pixbuf);
+    _pixels = (unsigned char *) node::Buffer::Data(pixbuf);
 }
 
 PasteWorker::~PasteWorker() {}

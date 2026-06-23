@@ -26,7 +26,7 @@ using namespace std;
 class EncodeToJpegBufferWorker : public Nan::AsyncWorker {
 public:
     EncodeToJpegBufferWorker(
-        Local<Object> & buff,
+        v8::Local<v8::Object> buff,
         size_t width,
         size_t height,
         int quality,
@@ -49,7 +49,7 @@ private:
 class EncodeToPngBufferWorker : public Nan::AsyncWorker {
 public:
     EncodeToPngBufferWorker(
-        Local<Object> & buff,
+        v8::Local<v8::Object> buff,
         size_t width,
         size_t height,
         int compression,
@@ -76,7 +76,7 @@ private:
 class EncodeToGifBufferWorker : public Nan::AsyncWorker {
 public:
     EncodeToGifBufferWorker(
-        Local<Object> & buff,
+        v8::Local<v8::Object> buff,
         size_t width,
         size_t height,
         int cmapSize,

@@ -31,7 +31,7 @@ class DecodeBufferWorker : public Nan::AsyncWorker {
 public:
     DecodeBufferWorker(
         Nan::Callback * callback,
-        Local<Object> & buff,
+        v8::Local<v8::Object> buff,
         buf_dec_f_t decoder
     );
     ~DecodeBufferWorker();
