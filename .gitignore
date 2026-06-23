@@ -33,6 +33,12 @@ build/Release
 node_modules
 jspm_packages
 
+# npm and yarn directories
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+.pnp.*
+
 # Optional npm cache directory
 .npm
 
