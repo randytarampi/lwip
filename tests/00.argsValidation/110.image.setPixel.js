@@ -2,6 +2,7 @@
 
 const lwip = require('../../'),
     imgs = require('../imgs');
+require('should');
 
 describe('image.setPixel arguments validation', () => {
 

@@ -3,6 +3,7 @@
 const assert = require('assert'),
     lwip = require('../../'),
     imgs = require('../imgs');
+require('should');
 
 describe('image.paste arguments validation', () => {
 

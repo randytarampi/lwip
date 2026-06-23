@@ -129,7 +129,7 @@ describe('lwip.dominantColor',function(){
       try{
         t_image.dominantColor(fail);
       }
-      catch(error){
+      catch{
           err_count++;
       }
       finally{
