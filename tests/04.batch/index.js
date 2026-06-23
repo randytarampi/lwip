@@ -1,5 +1,5 @@
 const join = require('path').join,
-    mkdirp = require('mkdirp'),
+    mkdirp = require('mkdirp').mkdirp,
     lwip = require('../../'),
     utils = require('../utils'),
     imgs = require('../imgs');

@@ -1,6 +1,6 @@
 const join = require('path').join,
     assert = require('assert'),
-    mkdirp = require('mkdirp'),
+    mkdirp = require('mkdirp').mkdirp,
     lwip = require('../../');
 
 const tmpDir = join(__dirname, '../results');

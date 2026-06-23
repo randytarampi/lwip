@@ -1,4 +1,5 @@
 module.exports = {
+    require: ['should', 'should-type'],
     recursive: true,
     reporter: process.env.CI
         ? 'mocha-junit-reporter'

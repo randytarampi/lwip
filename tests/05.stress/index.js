@@ -1,7 +1,7 @@
 const join = require('path').join,
     fs = require('fs'),
     async = require('async'),
-    mkdirp = require('mkdirp'),
+    mkdirp = require('mkdirp').mkdirp,
     lwip = require('../../'),
     utils = require('../utils'),
     imgs = require('../imgs');
