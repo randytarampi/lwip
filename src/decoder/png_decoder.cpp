@@ -95,10 +95,10 @@ string decode_png_buffer(char * buffer, size_t size, CImg<unsigned char> ** cimg
     png_read_update_info(png_ptr, info_ptr);
     const int byte_depth = bit_depth >> 3;
 
-    // Allocate Memory for Image Read
+    size_t row_bytes = png_get_rowbytes(png_ptr, info_ptr);
     png_bytep * const imgData = new png_bytep[height];
     for (unsigned int row = 0; row < height; ++row)
-        imgData[row] = new png_byte[byte_depth * N_CHANNELS * width];
+        imgData[row] = new png_byte[row_bytes];
     png_read_image(png_ptr, imgData);
     png_read_end(png_ptr, end_info);
 

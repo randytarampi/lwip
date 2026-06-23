@@ -3,7 +3,7 @@
 #define RGB_N_CHANNELS 3
 
 EncodeToJpegBufferWorker::EncodeToJpegBufferWorker(
-    Local<Object> & buff,
+    v8::Local<v8::Object> buff,
     size_t width,
     size_t height,
     int quality,
@@ -12,7 +12,7 @@ EncodeToJpegBufferWorker::EncodeToJpegBufferWorker(
 ): Nan::AsyncWorker(callback), _width(width), _height(height),
     _quality(quality), _jpegbuf(NULL), _jpegbufsize(0), _progressive(progressive) {
     SaveToPersistent("buff", buff); // make sure buff isn't GC'ed
-    _pixbuf = (unsigned char *) Buffer::Data(buff);
+    _pixbuf = (unsigned char *) node::Buffer::Data(buff);
 }
 
 EncodeToJpegBufferWorker::~EncodeToJpegBufferWorker() {}

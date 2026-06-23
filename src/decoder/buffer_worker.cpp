@@ -2,13 +2,13 @@
 
 DecodeBufferWorker::DecodeBufferWorker(
     Nan::Callback * callback,
-    Local<Object> & buff,
+    v8::Local<v8::Object> buff,
     buf_dec_f_t decoder
 ): Nan::AsyncWorker(callback), _decoder(decoder), _pixbuf(NULL), _width(0),
-    _height(0), _channels(0), _trans(false), _metadata("") {
+    _height(0), _channels(0), _trans(false), _metadata(NULL) {
     SaveToPersistent("buff", buff); // make sure buff isn't GC'ed
-    _buffer = Buffer::Data(buff);
-    _buffsize = Buffer::Length(buff);
+    _buffer = node::Buffer::Data(buff);
+    _buffsize = node::Buffer::Length(buff);
 }
 
 DecodeBufferWorker::~DecodeBufferWorker() {}

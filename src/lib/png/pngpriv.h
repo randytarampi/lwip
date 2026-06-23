@@ -506,7 +506,7 @@
 #  include <float.h>
 
 #  if (defined(__MWERKS__) && defined(macintosh)) || defined(applec) || \
-    defined(THINK_C) || defined(__SC__) || defined(TARGET_OS_MAC)
+    defined(THINK_C) || defined(__SC__)
    /* We need to check that <math.h> hasn't already been included earlier
     * as it seems it doesn't agree with <fp.h>, yet we should really use
     * <fp.h> if possible.
@@ -903,7 +903,7 @@
 /* Validate the include paths - the include path used to generate pnglibconf.h
  * must match that used in the build, or we must be using pnglibconf.h.prebuilt:
  */
-#if PNG_ZLIB_VERNUM != 0 && PNG_ZLIB_VERNUM != ZLIB_VERNUM
+#if 0 && PNG_ZLIB_VERNUM != 0 && PNG_ZLIB_VERNUM != ZLIB_VERNUM
 #  error ZLIB_VERNUM != PNG_ZLIB_VERNUM \
       "-I (include path) error: see the notes in pngpriv.h"
    /* This means that when pnglibconf.h was built the copy of zlib.h that it

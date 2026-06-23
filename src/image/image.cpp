@@ -1,9 +1,10 @@
+#include <stdio.h>
 #include "image.h"
 
 Nan::Persistent<Function> LwipImage::constructor;
 
 void LwipImage::Init(v8::Local<v8::Object> exports) {
-    v8::Local<v8::Context> context = exports->CreationContext();
+    v8::Local<v8::Context> context = exports->GetIsolate()->GetCurrentContext();
     Nan::HandleScope scope;
 
     // Prepare constructor template
@@ -57,13 +58,15 @@ NAN_METHOD(LwipImage::NewInstance) {
 }
 
 NAN_METHOD(LwipImage::New) {
-    Nan::HandleScope();
+    if (info.Length() < 3 || !info[0]->IsObject() || !info[1]->IsNumber() || !info[2]->IsNumber()) {
+        return Nan::ThrowError("Invalid arguments");
+    }
     // info[0] - pixels buffer
     // info[1,2] - width and height
-    Local<Object> pixBuff = info[0].As<Object>();
-    size_t width = info[1].As<Number>()->Value();
-    size_t height = info[2].As<Number>()->Value();
-    unsigned char * pixels = (unsigned char *)Buffer::Data(pixBuff);
+    v8::Local<v8::Object> pixBuff = info[0].As<v8::Object>();
+    size_t width = info[1].As<v8::Number>()->Value();
+    size_t height = info[2].As<v8::Number>()->Value();
+    unsigned char * pixels = (unsigned char *)node::Buffer::Data(pixBuff);
     // TODO: handle CImg exception
     LwipImage * obj = new LwipImage(pixels, width, height);
     obj->Wrap(info.This());
@@ -76,15 +79,11 @@ NAN_METHOD(LwipImage::New) {
 // image.width():
 // --------------
 NAN_METHOD(LwipImage::width) {
-    Nan::HandleScope();
     LwipImage * obj = ObjectWrap::Unwrap<LwipImage>(info.Holder());
     info.GetReturnValue().Set(Nan::New<Number>(obj->_cimg->width()));
 }
 
-// image.height():
-// ---------------
 NAN_METHOD(LwipImage::height) {
-    Nan::HandleScope();
     LwipImage * obj = ObjectWrap::Unwrap<LwipImage>(info.Holder());
     info.GetReturnValue().Set(Nan::New<Number>(obj->_cimg->height()));
 }
@@ -92,22 +91,27 @@ NAN_METHOD(LwipImage::height) {
 // image.getPixel(left, top):
 // ---------------
 NAN_METHOD(LwipImage::getPixel) {
-    Nan::HandleScope();
+    if (info.Length() < 2 || !info[0]->IsNumber() || !info[1]->IsNumber()) {
+        return Nan::ThrowError("Invalid arguments");
+    }
+    v8::Local<v8::Context> context = info.GetIsolate()->GetCurrentContext();
     size_t left = (size_t) info[0].As<Number>()->Value();
     size_t top = (size_t) info[1].As<Number>()->Value();
     LwipImage * obj = ObjectWrap::Unwrap<LwipImage>(info.Holder());
+    if (left >= (size_t)obj->_cimg->width() || top >= (size_t)obj->_cimg->height()) {
+        return Nan::ThrowError("Coordinates out of bounds");
+    }
     Local<Array> rgba = Nan::New<Array>(4);
-    rgba->Set(v8::Isolate::GetCurrent()->GetCurrentContext(), 0, Nan::New((*(obj->_cimg))(left, top, 0, 0))); // red
-    rgba->Set(v8::Isolate::GetCurrent()->GetCurrentContext(), 1, Nan::New((*(obj->_cimg))(left, top, 0, 1))); // green
-    rgba->Set(v8::Isolate::GetCurrent()->GetCurrentContext(), 2, Nan::New((*(obj->_cimg))(left, top, 0, 2))); // blue
-    rgba->Set(v8::Isolate::GetCurrent()->GetCurrentContext(), 3, Nan::New((*(obj->_cimg))(left, top, 0, 3))); // alpha
+    rgba->Set(context, 0, Nan::New((*(obj->_cimg))(left, top, 0, 0))).FromJust(); // red
+    rgba->Set(context, 1, Nan::New((*(obj->_cimg))(left, top, 0, 1))).FromJust(); // green
+    rgba->Set(context, 2, Nan::New((*(obj->_cimg))(left, top, 0, 2))).FromJust(); // blue
+    rgba->Set(context, 3, Nan::New((*(obj->_cimg))(left, top, 0, 3))).FromJust(); // alpha
     info.GetReturnValue().Set(rgba);
 }
 
 // image.buffer():
 // ---------------
 NAN_METHOD(LwipImage::buffer) {
-    Nan::HandleScope();
     LwipImage * obj = ObjectWrap::Unwrap<LwipImage>(info.Holder());
     // return a new buffer. don't use same memory an image. make a copy.
     // image object may be gc'ed, but buffer needs to stay alive.
@@ -122,8 +126,9 @@ NAN_METHOD(LwipImage::buffer) {
 // info[2] - inter(polation)
 // info[3] - callback
 NAN_METHOD(LwipImage::resize) {
-    Nan::HandleScope();
-
+    if (info.Length() < 4 || !info[0]->IsNumber() || !info[1]->IsNumber() || !info[2]->IsNumber() || !info[3]->IsFunction()) {
+        return Nan::ThrowError("Invalid arguments");
+    }
     size_t width = info[0].As<Integer>()->Value();
     size_t height = info[1].As<Integer>()->Value();
     int inter = info[2].As<Integer>()->Value();
@@ -139,8 +144,6 @@ NAN_METHOD(LwipImage::resize) {
             callback
         )
     );
-
-    return;
 }
 
 // image.rotate(degs, inter, callback):
@@ -153,8 +156,9 @@ NAN_METHOD(LwipImage::resize) {
 // info[4] - A
 // info[5] - callback
 NAN_METHOD(LwipImage::rotate) {
-    Nan::HandleScope();
-
+    if (info.Length() < 6 || !info[0]->IsNumber() || !info[1]->IsNumber() || !info[2]->IsNumber() || !info[3]->IsNumber() || !info[4]->IsNumber() || !info[5]->IsFunction()) {
+        return Nan::ThrowError("Invalid arguments");
+    }
     float degs = (float) info[0].As<Number>()->Value();
     unsigned char r = (unsigned char) info[1].As<Integer>()->Value();
     unsigned char g = (unsigned char) info[2].As<Integer>()->Value();
@@ -174,8 +178,6 @@ NAN_METHOD(LwipImage::rotate) {
             callback
         )
     );
-
-    return;
 }
 
 // image.blur(sigma, callback):
@@ -184,8 +186,9 @@ NAN_METHOD(LwipImage::rotate) {
 // info[0] - sigma
 // info[1] - callback
 NAN_METHOD(LwipImage::blur) {
-    Nan::HandleScope();
-
+    if (info.Length() < 2 || !info[0]->IsNumber() || !info[1]->IsFunction()) {
+        return Nan::ThrowError("Invalid arguments");
+    }
     float sigma = (float) info[0].As<Number>()->Value();
     Nan::Callback * callback = new Nan::Callback(info[1].As<Function>());
     CImg<unsigned char> * cimg = ObjectWrap::Unwrap<LwipImage>(info.This())->_cimg;
@@ -197,8 +200,6 @@ NAN_METHOD(LwipImage::blur) {
             callback
         )
     );
-
-    return;
 }
 
 // image.crop(left, top, right, bottom, callback):
@@ -210,8 +211,9 @@ NAN_METHOD(LwipImage::blur) {
 // info[3] - bottom
 // info[4] - callback
 NAN_METHOD(LwipImage::crop) {
-    Nan::HandleScope();
-
+    if (info.Length() < 5 || !info[0]->IsNumber() || !info[1]->IsNumber() || !info[2]->IsNumber() || !info[3]->IsNumber() || !info[4]->IsFunction()) {
+        return Nan::ThrowError("Invalid arguments");
+    }
     size_t left = (size_t) info[0].As<Number>()->Value();
     size_t top = (size_t) info[1].As<Number>()->Value();
     size_t right = (size_t) info[2].As<Number>()->Value();
@@ -229,8 +231,6 @@ NAN_METHOD(LwipImage::crop) {
             callback
         )
     );
-
-    return;
 }
 
 // image.mirror(xaxis, yaxis, callback):
@@ -240,8 +240,9 @@ NAN_METHOD(LwipImage::crop) {
 // info[1] - yaxis (boolean)
 // info[2] - callback
 NAN_METHOD(LwipImage::mirror) {
-    Nan::HandleScope();
-
+    if (info.Length() < 3 || !info[0]->IsBoolean() || !info[1]->IsBoolean() || !info[2]->IsFunction()) {
+        return Nan::ThrowError("Invalid arguments");
+    }
     bool xaxis = Nan::To<bool>(info[0]).FromJust();
     bool yaxis = Nan::To<bool>(info[1]).FromJust();
     Nan::Callback * callback = new Nan::Callback(info[2].As<Function>());
@@ -255,8 +256,6 @@ NAN_METHOD(LwipImage::mirror) {
             callback
         )
     );
-
-    return;
 }
 
 // image.pad(left, top, right, bottom, color, callback):
@@ -272,8 +271,9 @@ NAN_METHOD(LwipImage::mirror) {
 // info[7] - a
 // info[8] - callback
 NAN_METHOD(LwipImage::pad) {
-    Nan::HandleScope();
-
+    if (info.Length() < 9 || !info[0]->IsNumber() || !info[1]->IsNumber() || !info[2]->IsNumber() || !info[3]->IsNumber() || !info[4]->IsNumber() || !info[5]->IsNumber() || !info[6]->IsNumber() || !info[7]->IsNumber() || !info[8]->IsFunction()) {
+        return Nan::ThrowError("Invalid arguments");
+    }
     size_t left = (size_t) info[0].As<Number>()->Value();
     size_t top = (size_t) info[1].As<Number>()->Value();
     size_t right = (size_t) info[2].As<Number>()->Value();
@@ -299,8 +299,6 @@ NAN_METHOD(LwipImage::pad) {
             callback
         )
     );
-
-    return;
 }
 
 // image.sharpen(amplitude, callback):
@@ -309,11 +307,12 @@ NAN_METHOD(LwipImage::pad) {
 // info[0] - amplitude
 // info[1] - callback
 NAN_METHOD(LwipImage::sharpen) {
-    Nan::HandleScope();
-
+    if (info.Length() < 2 || !info[0]->IsNumber() || !info[1]->IsFunction()) {
+        return Nan::ThrowError("Invalid arguments");
+    }
     float amp = (float) info[0].As<Number>()->Value();
     Nan::Callback * callback = new Nan::Callback(info[1].As<Function>());
-    CImg<unsigned char> * cimg = ObjectWrap::Unwrap<LwipImage>(info.This())->_cimg;
+    CImg<unsigned char> * cimg = ObjectWrap::Unwrap<LwipImage>(info.Holder())->_cimg;
 
     Nan::AsyncQueueWorker(
         new SharpenWorker(
@@ -322,8 +321,6 @@ NAN_METHOD(LwipImage::sharpen) {
             callback
         )
     );
-
-    return;
 }
 
 // image.hslaAdj(hd, sd, ld, callback):
@@ -335,14 +332,15 @@ NAN_METHOD(LwipImage::sharpen) {
 // info[3] - alpha delta
 // info[4] - callback
 NAN_METHOD(LwipImage::hslaAdj) {
-    Nan::HandleScope();
-
+    if (info.Length() < 5 || !info[0]->IsNumber() || !info[1]->IsNumber() || !info[2]->IsNumber() || !info[3]->IsNumber() || !info[4]->IsFunction()) {
+        return Nan::ThrowError("Invalid arguments");
+    }
     float hd = (float) info[0].As<Number>()->Value();
     float sd = (float) info[1].As<Number>()->Value();
     float ld = (float) info[2].As<Number>()->Value();
     float ad = (float) info[3].As<Number>()->Value();
     Nan::Callback * callback = new Nan::Callback(info[4].As<Function>());
-    CImg<unsigned char> * cimg = ObjectWrap::Unwrap<LwipImage>(info.This())->_cimg;
+    CImg<unsigned char> * cimg = ObjectWrap::Unwrap<LwipImage>(info.Holder())->_cimg;
 
     Nan::AsyncQueueWorker(
         new HSLAWorker(
@@ -354,8 +352,6 @@ NAN_METHOD(LwipImage::hslaAdj) {
             callback
         )
     );
-
-    return;
 }
 
 // image.opacify(callback):
@@ -363,10 +359,11 @@ NAN_METHOD(LwipImage::hslaAdj) {
 
 // info[0] - callback
 NAN_METHOD(LwipImage::opacify) {
-    Nan::HandleScope();
-
+    if (info.Length() < 1 || !info[0]->IsFunction()) {
+        return Nan::ThrowError("Invalid arguments");
+    }
     Nan::Callback * callback = new Nan::Callback(info[0].As<Function>());
-    CImg<unsigned char> * cimg = ObjectWrap::Unwrap<LwipImage>(info.This())->_cimg;
+    CImg<unsigned char> * cimg = ObjectWrap::Unwrap<LwipImage>(info.Holder())->_cimg;
 
     Nan::AsyncQueueWorker(
         new OpacifyWorker(
@@ -374,8 +371,6 @@ NAN_METHOD(LwipImage::opacify) {
             callback
         )
     );
-
-    return;
 }
 
 // image.paste(callback):
@@ -388,15 +383,16 @@ NAN_METHOD(LwipImage::opacify) {
 // info[4] - height
 // info[5] - callback
 NAN_METHOD(LwipImage::paste) {
-    Nan::HandleScope();
-
+    if (info.Length() < 6 || !info[0]->IsNumber() || !info[1]->IsNumber() || !info[2]->IsObject() || !info[3]->IsNumber() || !info[4]->IsNumber() || !info[5]->IsFunction()) {
+        return Nan::ThrowError("Invalid arguments");
+    }
     size_t left = (size_t) info[0].As<Number>()->Value();
     size_t top = (size_t) info[1].As<Number>()->Value();
-    Local<Object> pixBuff = info[2].As<Object>();
+    v8::Local<v8::Object> pixBuff = info[2].As<v8::Object>();
     size_t width = (size_t) info[3].As<Number>()->Value();
     size_t height = (size_t) info[4].As<Number>()->Value();
     Nan::Callback * callback = new Nan::Callback(info[5].As<Function>());
-    CImg<unsigned char> * cimg = ObjectWrap::Unwrap<LwipImage>(info.This())->_cimg;
+    CImg<unsigned char> * cimg = ObjectWrap::Unwrap<LwipImage>(info.Holder())->_cimg;
 
     Nan::AsyncQueueWorker(
         new PasteWorker(
@@ -409,8 +405,6 @@ NAN_METHOD(LwipImage::paste) {
             callback
         )
     );
-
-    return;
 }
 
 // image.setPixel(left, top, color, callback):
@@ -424,8 +418,9 @@ NAN_METHOD(LwipImage::paste) {
 // info[5] - alpha
 // info[6] - callback
 NAN_METHOD(LwipImage::setPixel) {
-    Nan::HandleScope();
-
+    if (info.Length() < 7 || !info[0]->IsNumber() || !info[1]->IsNumber() || !info[2]->IsNumber() || !info[3]->IsNumber() || !info[4]->IsNumber() || !info[5]->IsNumber() || !info[6]->IsFunction()) {
+        return Nan::ThrowError("Invalid arguments");
+    }
     size_t left = (size_t) info[0].As<Number>()->Value();
     size_t top = (size_t) info[1].As<Number>()->Value();
     unsigned char r = (unsigned char) info[2].As<Integer>()->Value();
@@ -433,7 +428,7 @@ NAN_METHOD(LwipImage::setPixel) {
     unsigned char b = (unsigned char) info[4].As<Integer>()->Value();
     unsigned char a = (unsigned char) info[5].As<Integer>()->Value();
     Nan::Callback * callback = new Nan::Callback(info[6].As<Function>());
-    CImg<unsigned char> * cimg = ObjectWrap::Unwrap<LwipImage>(info.This())->_cimg;
+    CImg<unsigned char> * cimg = ObjectWrap::Unwrap<LwipImage>(info.Holder())->_cimg;
 
     Nan::AsyncQueueWorker(
         new SetPixelWorker(
@@ -447,6 +442,4 @@ NAN_METHOD(LwipImage::setPixel) {
             callback
         )
     );
-
-    return;
 }

@@ -230,7 +230,7 @@ public:
     PasteWorker(
         size_t left,
         size_t top,
-        Local<Object> & pixbuf,
+        v8::Local<v8::Object> pixbuf,
         size_t width,
         size_t height,
         CImg<unsigned char> * cimg,

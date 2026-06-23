@@ -5,7 +5,7 @@
 #define RGBA_N_CHANNELS 4
 
 EncodeToGifBufferWorker::EncodeToGifBufferWorker(
-    Local<Object> & buff,
+    v8::Local<v8::Object> buff,
     size_t width,
     size_t height,
     int cmapSize,
@@ -18,7 +18,7 @@ EncodeToGifBufferWorker::EncodeToGifBufferWorker(
     _cmapSize(cmapSize), _colors(colors), _interlaced(interlaced), _trans(trans),
     _threshold(threshold), _gifbuf(NULL), _gifbufsize(0) {
     SaveToPersistent("buff", buff); // make sure buff isn't GC'ed
-    _pixbuf = (unsigned char *) Buffer::Data(buff);
+    _pixbuf = (unsigned char *) node::Buffer::Data(buff);
     if (_trans){
         // make room in the color table for a transparent color
         if (_cmapSize == 256){

@@ -29,6 +29,5 @@ void SetPixelWorker::HandleOKCallback () {
     Local<Value> argv[] = {
         Nan::Null()
     };
-    Nan::AsyncResource resource("lwip::setpixel.HandleOKCallback");
-    callback->Call(1, argv, &resource);
+    callback->Call(1, argv, async_resource);
 }
