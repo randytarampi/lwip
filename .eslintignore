@@ -1,6 +1,0 @@
-node_modules
-build
-cmake-build-debug
-coverage
-.nyc_output
-.idea
