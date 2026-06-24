@@ -49,6 +49,11 @@ describe('batch.toBuffer arguments validation', () => {
 
     describe('PNG params', () => {
 
+        // High-compression PNG encoding can exceed Mocha's default 2s timeout on newer Node/libpng combos.
+        before(function () {
+            this.timeout(5000);
+        });
+
         describe('valid params', () => {
 
             describe('defaults', () => {
