@@ -1,10 +1,12 @@
-const join = require('path').join,
-    fs = require('fs'),
-    async = require('async'),
-    mkdirp = require('mkdirp').mkdirp,
-    lwip = require('../../'),
-    utils = require('../utils'),
-    imgs = require('../imgs');
+import { dirname, join } from 'node:path';
+import fs from 'node:fs';
+import async from 'async';
+import { mkdirp } from 'mkdirp';
+import lwip from '../../index.js';
+import utils from '../utils.js';
+import imgs from '../imgs.js';
+import { fileURLToPath } from 'node:url';
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const tmpDir = join(__dirname, '../results'),
     outpathJpeg = join(tmpDir, 'stress.jpg'),

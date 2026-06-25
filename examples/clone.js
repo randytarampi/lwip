@@ -1,3 +1,5 @@
+import lwip from '../index.js';
+
 /**
  * Example for using LWIP to clone an image.
  * 1. Do some initial manipulations on the image.
@@ -5,7 +7,6 @@
  * 3. Do some more different manipulations in the clones.
  */
 
-const lwip = require('../');
 
 lwip.open('lena.jpg', (err, image) => {
     if (err) return console.log(err);

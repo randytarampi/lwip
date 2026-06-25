@@ -1,7 +1,11 @@
 // methods should throw errors when arguments are invalid
 
-const lwip = require('../../'),
-    imgs = require('../imgs');
+
+import lwip from '../../index.js';
+import imgs from '../imgs.js';
+
+// methods should throw errors when arguments are invalid
+
 
 describe('batch.mirror arguments validation', () => {
 

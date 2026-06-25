@@ -1,8 +1,10 @@
-const join = require('path').join,
-    mkdirp = require('mkdirp').mkdirp,
-    lwip = require('../../'),
-    utils = require('../utils'),
-    imgs = require('../imgs');
+import { dirname, join } from 'node:path';
+import { mkdirp } from 'mkdirp';
+import lwip from '../../index.js';
+import utils from '../utils.js';
+import imgs from '../imgs.js';
+import { fileURLToPath } from 'node:url';
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 describe('image.batch', () => {
 

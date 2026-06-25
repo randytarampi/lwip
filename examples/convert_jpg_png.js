@@ -1,8 +1,9 @@
+import lwip from '../index.js';
+
 /**
  * Example for using LWIP to convert an image from jpg to png.
  */
 
-const lwip = require('../');
 
 lwip.open('lena.jpg', (err, image) => {
     if (err) return console.log(err);

@@ -1,6 +1,6 @@
-const assert = require('assert'),
-    lwip = require('../../'),
-    imgs = require('../imgs');
+import assert from 'node:assert';
+import lwip from '../../index.js';
+import imgs from '../imgs.js';
 
 describe('clone correct behavior', () => {
 

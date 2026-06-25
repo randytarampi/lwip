@@ -1,4 +1,8 @@
-require('./lib/Image');
-require('./lib/Batch');
+import './lib/Image.js';
+import './lib/Batch.js';
 
-module.exports = require('./lib/obtain');
+import obtain from './lib/obtain.js';
+
+export default obtain;
+export const open = obtain.open;
+export const create = obtain.create;

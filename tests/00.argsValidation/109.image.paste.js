@@ -1,9 +1,8 @@
-// methods should throw errors when arguments are invalid
-
-const assert = require('assert'),
-    lwip = require('../../'),
-    imgs = require('../imgs');
-require('should');
+import assert from 'node:assert';
+import lwip from '../../index.js';
+import imgs from '../imgs.js';
+import 'should';
+import Image from '../../lib/Image.js';
 
 describe('image.paste arguments validation', () => {
 
@@ -66,7 +65,6 @@ describe('image.paste arguments validation', () => {
 
     describe('pasted image exceeds dimensions', () => {
 
-        const Image = require('../../lib/Image');
 
         let clone;
         before(done => {

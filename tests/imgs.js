@@ -1,7 +1,10 @@
-const imbase = 'images/',
-    join = require('path').join;
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-module.exports = {
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const imbase = 'images/';
+
+export default {
     inv: join(__dirname, imbase, 'no.such.image'),
     jpg: {
         gs: join(__dirname, imbase, 'gs.jpg'),

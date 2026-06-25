@@ -1,9 +1,10 @@
+import async from 'async';
+import lwip from '../index.js';
+
 /**
  * Example for using LWIP to blend two images.
  */
 
-const async = require('async'),
-    lwip = require('../');
 
 async.waterfall([
 
