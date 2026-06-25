@@ -1,7 +1,9 @@
-const join = require('path').join,
-    assert = require('assert'),
-    mkdirp = require('mkdirp').mkdirp,
-    lwip = require('../../');
+import { dirname, join } from 'node:path';
+import assert from 'node:assert';
+import { mkdirp } from 'mkdirp';
+import lwip from '../../index.js';
+import { fileURLToPath } from 'node:url';
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const tmpDir = join(__dirname, '../results');
 

@@ -1,10 +1,11 @@
+import lwip from '../index.js';
+
 /**
  * Example for using LWIP to manually setting pixels in an image.
  *
  * Creates a canvas with a rainbow gradient.
  */
 
-const lwip = require('../');
 
 const output = 'rainbow.png',
     width = 360,

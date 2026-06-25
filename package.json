@@ -43,6 +43,7 @@
   },
   "gypfile": true,
   "homepage": "https://github.com/randytarampi/lwip",
+  "type": "module",
   "keywords": [
     "alpha",
     "batch",
@@ -81,7 +82,7 @@
   "repository": "randytarampi/lwip.git",
   "scripts": {
     "cover": "npm run cover:actual",
-    "cover:actual": "nyc mocha --config ./tests/.mocharc.js tests",
+    "cover:actual": "nyc mocha --config ./tests/.mocharc.cjs tests",
     "coveralls": "run-script-os",
     "coveralls:darwin:linux": "cat ./coverage/lcov.info | coveralls",
     "coveralls:win32": "type ./coverage/lcov.info | coveralls",
@@ -91,7 +92,7 @@
     "lint:cpp": "node-cpplint cpp,h src/**/* $(grep ^.*$ CPPLINT.cfg | sed 's/filter=/filters=/g' | awk '{print \"--\"$0}' ORS=' ' | tr '=' ' ' | tr ',' ' ' | tr '/' '-')\n",
     "lint:js": "eslint .",
     "pretest": "npm run lint:js",
-    "test": "mocha --config ./tests/.mocharc.js tests"
+    "test": "mocha --config ./tests/.mocharc.cjs tests"
   },
   "typings": "typings.d.ts",
   "packageManager": "yarn@4.17.0"

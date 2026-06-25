@@ -1,8 +1,12 @@
 // methods should throw errors when arguments are invalid
 
-const fs = require('fs'),
-    lwip = require('../../'),
-    imgs = require('../imgs');
+
+import fs from 'node:fs';
+import lwip from '../../index.js';
+import imgs from '../imgs.js';
+
+// methods should throw errors when arguments are invalid
+
 
 describe('lwip.open arguments validation', () => {
 

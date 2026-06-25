@@ -1,8 +1,12 @@
 // methods should throw errors when arguments are invalid
 
-const lwip = require('../../'),
-    imgs = require('../imgs');
-require('should');
+
+import lwip from '../../index.js';
+import imgs from '../imgs.js';
+import 'should';
+
+// methods should throw errors when arguments are invalid
+
 
 describe('image.setPixel arguments validation', () => {
 

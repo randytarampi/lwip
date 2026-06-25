@@ -1,8 +1,9 @@
+import lwip from '../index.js';
+
 /**
  * Example for using LWIP for several batch operations.
  */
 
-const lwip = require('../');
 
 lwip.open('lena.png', (err, image) => {
     if (err) return console.log(err);

@@ -1,6 +1,8 @@
-const join = require('path').join,
-    lwip = require('../../'),
-    imgs = require('../imgs');
+import { dirname, join } from 'node:path';
+import lwip from '../../index.js';
+import imgs from '../imgs.js';
+import { fileURLToPath } from 'node:url';
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 describe('extract correct behavior', () => {
 

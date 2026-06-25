@@ -1,7 +1,7 @@
-const should = require('should'),
-    fs = require('fs'),
-    lwip = require('../../'),
-    imgs = require('../imgs');
+import should from 'should';
+import fs from 'node:fs';
+import lwip from '../../index.js';
+import imgs from '../imgs.js';
 
 describe('lwip.open', () => {
     describe('non-existing image', () => {
