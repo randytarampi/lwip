@@ -86,6 +86,8 @@
     "coveralls": "run-script-os",
     "coveralls:darwin:linux": "cat ./coverage/lcov.info | coveralls",
     "coveralls:win32": "type ./coverage/lcov.info | coveralls",
+    "build": "npm run build:native",
+    "clean": "rm -rf node_modules dist .nyc_output coverage",
     "build:native": "node-gyp rebuild -j 8",
     "install": "node-gyp rebuild -j 8",
     "lint": "npm run lint:js && npm run lint:cpp",

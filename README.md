@@ -3,13 +3,9 @@
 [![npm versions](https://img.shields.io/npm/v/@randy.tarampi/lwip.svg?style=flat-square)](https://www.npmjs.org/package/@randy.tarampi/lwip)
 [![npm downloads](https://img.shields.io/npm/dt/@randy.tarampi/lwip.svg?style=flat-square)](https://www.npmjs.com/package/@randy.tarampi/lwip)
 [![npm license](https://img.shields.io/npm/l/@randy.tarampi/lwip.svg?registry_uri=https%3A%2F%2Fregistry.npmjs.com&style=flat-square)](https://www.npmjs.com/package/@randy.tarampi/lwip)
-[![Build status](https://img.shields.io/travis/com/randytarampi/lwip.svg?style=flat-square)](https://travis-ci.com/randytarampi/lwip)
-[![Build status](https://ci.appveyor.com/api/projects/status/46mk5218x995svhw/branch/master?svg=true&style=flat-square)](https://ci.appveyor.com/project/randytarampi/lwip/branch/master)
-[![Coverage status](https://img.shields.io/coveralls/randytarampi/lwip.svg?style=flat-square)](https://coveralls.io/github/randytarampi/lwip?branch=master)
-[![Maintainability status](https://img.shields.io/codeclimate/maintainability-percentage/randytarampi/lwip.svg?style=flat-square)](https://codeclimate.com/github/randytarampi/lwip/maintainability)
+[![CI](https://github.com/randytarampi/lwip/actions/workflows/ci.yml/badge.svg)](https://github.com/randytarampi/lwip/actions/workflows/ci.yml)
 [![Analytics](https://ga-beacon.appspot.com/UA-50921068-1/beacon/github/randytarampi/lwip/?flat&useReferrer)](https://github.com/igrigorik/ga-beacon)
-[![Join the chat at https://gitter.im/EyalAr/lwip](https://img.shields.io/gitter/room/EyalAr/lwip.svg?style=flat-square)](https://gitter.im/EyalAr/lwip?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Frandytarampi%2Flwip.svg)](https://app.fossa.com/projects/git%2Bgithub.com%2Frandytarampi%2Flwip?ref=badge_shield)
+
 
 [![Install @randy.tarampi/lwip](https://nodeico.herokuapp.com/@randy.tarampi/lwip.svg)](https://www.npmjs.com/package/@randy.tarampi/lwip)
 
@@ -876,4 +872,3 @@ The native part of this module is compiled from source which uses either your na
 
 
 ## License
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Frandytarampi%2Flwip.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Frandytarampi%2Flwip?ref=badge_large)
