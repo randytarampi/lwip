@@ -1,8 +1,9 @@
+import lwip from '../index.js';
+
 /**
  * Example for using LWIP to open a raw pixel buffer
  */
 
-const lwip = require('../');
 
 const w = 90;
 const h = 90;

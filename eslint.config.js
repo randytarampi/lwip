@@ -1,8 +1,8 @@
-const js = require('@eslint/js');
-const importPlugin = require('eslint-plugin-import');
-const globals = require('globals');
+import js from '@eslint/js';
+import importPlugin from 'eslint-plugin-import';
+import globals from 'globals';
 
-module.exports = [
+export default [
     {
         ignores: [
             'node_modules/**',
@@ -10,7 +10,8 @@ module.exports = [
             'cmake-build-debug/**',
             'coverage/**',
             '.nyc_output/**',
-            '.idea/**'
+            '.idea/**',
+            'tests/.mocharc.cjs'
         ]
     },
     js.configs.recommended,
@@ -21,7 +22,7 @@ module.exports = [
         },
         languageOptions: {
             ecmaVersion: 2020,
-            sourceType: 'commonjs',
+            sourceType: 'module',
             globals: {
                 ...globals.node,
                 ...globals.mocha,

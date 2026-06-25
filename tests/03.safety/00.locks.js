@@ -1,5 +1,5 @@
-const lwip = require('../../'),
-    imgs = require('../imgs');
+import lwip from '../../index.js';
+import imgs from '../imgs.js';
 
 describe('simultaneous operations locks', () => {
 

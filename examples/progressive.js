@@ -1,8 +1,9 @@
+import lwip from '../index.js';
+
 /**
  * Example for using LWIP to shift image's hue by 50 degrees.
  */
 
-const lwip = require('../');
 
 lwip.open('lena.jpg', (err, image) => {
     if (err) return console.log(err);

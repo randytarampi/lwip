@@ -1,9 +1,10 @@
+import async from 'async';
+import lwip from '../index.js';
+
 /**
  * Example for using LWIP to create a hue gradient mosiac.
  */
 
-const async = require('async'),
-    lwip = require('../');
 
 lwip.open('lena.jpg', (err, image) => {
     if (err) return console.log(err);

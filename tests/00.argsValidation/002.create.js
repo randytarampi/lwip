@@ -1,6 +1,10 @@
 // methods should throw errors when arguments are invalid
 
-const lwip = require('../../');
+
+import lwip from '../../index.js';
+
+// methods should throw errors when arguments are invalid
+
 
 describe('lwip.create arguments validation', () => {
 
