@@ -4,7 +4,6 @@
 [![npm downloads](https://img.shields.io/npm/dt/@randy.tarampi/lwip.svg?style=flat-square)](https://www.npmjs.com/package/@randy.tarampi/lwip)
 [![npm license](https://img.shields.io/npm/l/@randy.tarampi/lwip.svg?registry_uri=https%3A%2F%2Fregistry.npmjs.com&style=flat-square)](https://www.npmjs.com/package/@randy.tarampi/lwip)
 [![CI](https://github.com/randytarampi/lwip/actions/workflows/ci.yml/badge.svg)](https://github.com/randytarampi/lwip/actions/workflows/ci.yml)
-[![Analytics](https://ga-beacon.appspot.com/UA-50921068-1/beacon/github/randytarampi/lwip/?flat&useReferrer)](https://github.com/igrigorik/ga-beacon)
 
 
 [![Install @randy.tarampi/lwip](https://nodeico.herokuapp.com/@randy.tarampi/lwip.svg)](https://www.npmjs.com/package/@randy.tarampi/lwip)
@@ -13,6 +12,7 @@
 This is a branch based off of [@kant2002/lwip](https://www.npmjs.com/package/@kant2002/lwip) and [@mcph/lwip](https://www.npmjs.com/package/@mcph/lwip), customized for my own use.
 
 0. [Overview](#overview)
+  0. [Dependencies](#dependencies)
   0. [Installation](#installation)
   0. [Usage](#usage)
   0. [Supported formats](#supported-formats)
@@ -71,18 +71,32 @@ install anything else on your system.
 
 [Read the background for the development of this module.](http://eyalarubas.com/image-processing-nodejs.html)
 
+## Dependencies
+
+```bash
+brew install nvm
+nvm install 24
+corepack enable
+```
+
+You also need native build tools: `node-gyp` plus a C++ compiler/toolchain (`xcode-select --install` on macOS, Visual Studio Build Tools on Windows).
+
+This addon still uses `nan`; it builds on Node 24, but `nan` is deprecated.
+
 ### Installation
 
 ```bash
-npm install @randy.tarampi/lwip
+yarn install
+
+yarn build:native
 ```
 
-Or, clone this repo and `cd @randy.tarampi/lwip && npm install`.
+Or, clone this repo and run the same two commands locally.
 
-You can run tests with `npm test`.
+You can run tests with `yarn test`.
 
 ##### NOTE: Installation of this module involves compiling native code
-If `npm install @randy.tarampi/lwip` fails, you probably need to setup your system.
+If `yarn install` or `yarn build:native` fails, you probably need to set up your system.
 
 See the [instructions for `node-gyp`](https://github.com/TooTallNate/node-gyp#installation).
 
