@@ -1,0 +1,4 @@
+{
+  "**/*.{js,jsx}": "eslint --fix",
+  "src/**/*.{cc,cpp,h}": "node-cpplint cpp,h"
+}

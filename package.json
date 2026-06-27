@@ -23,6 +23,9 @@
     "eslint": "^10.5.0",
     "eslint-plugin-import": "^2.32.0",
     "globals": "^17.7.0",
+    "husky": "^9.1.7",
+    "knip": "^6.22.0",
+    "lint-staged": "^17.0.8",
     "mkdirp": "^3.0.1",
     "mocha": "^11.7.6",
     "mocha-junit-reporter": "^2.2.1",
@@ -84,6 +87,7 @@
     "cover": "npm run cover:actual",
     "cover:actual": "nyc mocha --config ./tests/.mocharc.cjs tests",
     "coveralls": "run-script-os",
+    "knip": "knip",
     "coveralls:darwin:linux": "cat ./coverage/lcov.info | coveralls",
     "coveralls:win32": "type ./coverage/lcov.info | coveralls",
     "build": "npm run build:native",
@@ -94,7 +98,8 @@
     "lint:cpp": "node-cpplint cpp,h src/**/* $(grep ^.*$ CPPLINT.cfg | sed 's/filter=/filters=/g' | awk '{print \"--\"$0}' ORS=' ' | tr '=' ' ' | tr ',' ' ' | tr '/' '-')\n",
     "lint:js": "eslint .",
     "pretest": "npm run lint:js",
-    "test": "mocha --config ./tests/.mocharc.cjs tests"
+    "test": "mocha --config ./tests/.mocharc.cjs tests",
+    "prepare": "husky"
   },
   "typings": "typings.d.ts",
   "packageManager": "yarn@4.17.0"
