@@ -1,6 +1,5 @@
 # Logs
 logs
-*.log
 npm-debug.log*
 
 # Runtime data
@@ -13,9 +12,6 @@ lib-cov
 
 # Coverage directory used by tools like istanbul
 coverage
-
-# nyc test coverage
-.nyc_output
 
 # Test artifacts
 tests/results
@@ -45,13 +41,23 @@ jspm_packages
 # Optional REPL history
 .node_repl_history
 
-# Project files
-.idea
-*.iml
-.vs
-
 # OS files
 .DS_Store
+
+# Generated
+## Node
+.nyc_output/
+*.log
+
+## Testing
+test-results.xml
+
+## JetBrains
+*.iml
+.idea/
+
+## Lerna
+lerna-debug.log
 
 # Compiled resources
 dist
