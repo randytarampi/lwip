@@ -3,12 +3,12 @@
 `lwip` is a single-package native addon project.
 
 ## Layout
-- `index.js` is the JS entry point.
-- `lib/` contains JS helpers (`Batch.js`, `Image.js`, `obtain.js`, `util.js`, `defs.js`).
-- `src/` contains the native/C++ implementation split by `decoder/`, `encoder/`, `image/`, `lib/`, `shared/`, and `win/`.
-- `examples/` holds runnable sample scripts.
-- `tests/` contains the Mocha suite.
-- `binding.gyp` and the `install`/`build:native` scripts drive node-gyp builds.
+- `index.js` is the JS entry point; it re-exports `lib/obtain.js`.
+- `lib/` contains the JS wrappers (`Batch.js`, `Image.js`, `obtain.js`, `util.js`, `defs.js`).
+- `src/decoder`, `src/encoder`, and `src/image` hold the native addon code paths.
+- `src/lib` vendors the jpeg/png/gif/zlib sources, with `src/shared` and `src/win` for cross-platform helpers.
+- `tests/` holds the ~450-spec Mocha suite plus fixtures and golden images.
+- `binding.gyp` defines the `lwip_decoder`, `lwip_encoder`, and `lwip_image` addon targets that `node-gyp` builds.
 
 ## Dependency shape
 - The JS layer wraps the native addon through `bindings`.
