@@ -30,7 +30,7 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             yarn-${{ runner.os }}-
-      - run: yarn install --immutable --immutable-cache
+      - run: yarn install --no-immutable
       - run: yarn lint
       - run: yarn lint:cpp
       - run: yarn build:native
