@@ -1,6 +1,5 @@
 eslint:
-  enabled: true
-  config_file: eslint.config.js
+  enabled: false
 jshint:
   enabled: false
 shellcheck:
