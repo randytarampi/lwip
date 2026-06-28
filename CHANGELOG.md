@@ -1,3 +1,10 @@
+## [3.0.19](https://github.com/randytarampi/lwip/compare/v3.0.18...v3.0.19) (2026-06-28)
+
+
+### Bug Fixes
+
+* **release:** make release actually work. Detached HEAD, wrong trigger, stale PR refs. 🤦‍♂️ ([8c13a50](https://github.com/randytarampi/lwip/commit/8c13a501b0a0568f350b14d2d5ff3105b66e2499))
+
 ## [3.0.18](https://github.com/randytarampi/lwip/compare/v3.0.17...v3.0.18) (2026-06-28)
 
 
