@@ -37,3 +37,17 @@ jobs:
       - run: yarn lint:cpp
       - run: yarn build:native
       - run: yarn test
+      - name: Coveralls
+        uses: coverallsapp/github-action@v2
+        with:
+          flag-name: ${{ matrix.node-version }}
+          parallel: true
+
+  finish:
+    needs: node
+    runs-on: ubuntu-latest
+    steps:
+      - name: Coveralls Finished
+        uses: coverallsapp/github-action@v2
+        with:
+          parallel-finished: true
