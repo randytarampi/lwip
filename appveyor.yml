@@ -6,23 +6,20 @@ image: Visual Studio 2019
 
 environment:
   matrix:
-    - nodejs_version: 10
-    - nodejs_version: 12
-    - nodejs_version: 14
-    - nodejs_version: ""
-matrix:
-  allow_failures:
-    - nodejs_version: 8
-    - nodejs_version: ""
+    - nodejs_version: 24
 
 install:
   - ps: Install-Product node $env:nodejs_version
   - node --version
-  - npm --version
-  - npm ci
+  - corepack enable
+  - yarn --version
+  - yarn install
 
 test_script:
-  - npm test
+  - yarn lint
+  - yarn lint:cpp
+  - yarn build:native
+  - yarn test
 
 build: off
 
