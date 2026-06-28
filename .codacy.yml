@@ -1,0 +1,7 @@
+---
+exclude_paths:
+  - "src/lib/**"
+  - "src/decoder/lib/**"
+  - "src/encoder/lib/**"
+  - "src/image/lib/**"
+  - "node_modules/**"
