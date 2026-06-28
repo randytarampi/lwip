@@ -13,3 +13,7 @@
 ## Dependency shape
 - The JS layer wraps the native addon through `bindings`.
 - `nan` bridges JS to the addon implementation.
+
+## CI/CD Pipeline
+- `.github/workflows/ci.yml` runs tests on PRs on Node 24.
+- `.github/workflows/release.yml` does master-branch semantic-release with OIDC trusted publishing.
