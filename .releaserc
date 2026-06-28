@@ -9,4 +9,6 @@ plugins:
             - package.json
             - CHANGELOG.md
         message: "release: Release ${nextRelease.version}\n\n[skip ci]\n\n${nextRelease.notes}"
-    - "@semantic-release/github"
+    - - "@semantic-release/github"
+      - successComment: false
+        failComment: false
