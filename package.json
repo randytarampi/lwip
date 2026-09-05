@@ -98,5 +98,5 @@
     "prepare": "husky"
   },
   "typings": "typings.d.ts",
-  "packageManager": "yarn@4.17.0"
+  "packageManager": "yarn@4.18.0"
 }
