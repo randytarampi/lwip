@@ -43,6 +43,43 @@ jobs:
           flag-name: ${{ matrix.node-version }}
           parallel: true
 
+  appveyor:
+    if: ${{ github.event_name == 'push' }}
+    name: Wait for the AppVeyor (Windows) build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for the AppVeyor build of this commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          sha="${{ github.sha }}"
+          slug="randytarampi/lwip"
+          echo "Waiting for the AppVeyor build of ${sha}"
+          for i in $(seq 1 45); do
+            response=$(mktemp)
+            trap 'rm -f "$response"' EXIT
+            curl -sf --max-time 30 "https://ci.appveyor.com/api/projects/${slug}" > "$response" || true
+            status=$(SHA="$sha" python3 - "$response" <<'PY'
+          import json
+          import os
+          import sys
+
+          with open(sys.argv[1], encoding="utf-8") as response:
+              data = json.load(response)
+          build = data.get("build") or {}
+          print(build.get("status") or "notfound" if (build.get("commitId") or "").lower() == os.environ["SHA"].lower() else "notfound")
+          PY
+            ) || status=notfound
+            echo "poll ${i}: ${status}"
+            case "$status" in
+              success) exit 0 ;;
+              failed|error|cancelled) echo "::error::AppVeyor build ${status} for ${sha}"; exit 1 ;;
+            esac
+            sleep 60
+          done
+          echo "::error::AppVeyor build for ${sha} did not finish in 45 minutes"
+          exit 1
+
   finish:
     needs: node
     runs-on: ubuntu-latest
