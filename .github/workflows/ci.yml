@@ -44,6 +44,40 @@ jobs:
           flag-name: ${{ matrix.node-version }}
           parallel: true
 
+  windows:
+    runs-on: windows-latest
+    env:
+      GYP_MSVS_VERSION: 2022
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: yarn
+      - run: corepack enable
+      - name: Install dependencies
+        env:
+          YARN_ENABLE_HARDENED_MODE: false
+        run: yarn install --immutable --network-timeout 600000
+      - run: yarn build:native
+      - run: yarn verify
+
+  macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: yarn
+      - run: corepack enable
+      - name: Install dependencies
+        env:
+          YARN_ENABLE_HARDENED_MODE: false
+        run: yarn install --immutable --network-timeout 600000
+      - run: yarn build:native
+      - run: yarn verify
+
   appveyor:
     if: ${{ github.event_name == 'push' }}
     name: Wait for the AppVeyor (Windows) build
