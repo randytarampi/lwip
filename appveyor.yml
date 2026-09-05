@@ -14,7 +14,8 @@ environment:
       CL: /Zc:strictStrings-
 
 install:
-  - ps: Install-Product node $env:nodejs_version
+  - cmd: nvm install %nodejs_version% 64
+  - cmd: nvm use %nodejs_version% 64
   - node --version
   - corepack enable
   - corepack yarn --version
