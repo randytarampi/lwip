@@ -1,9 +1,9 @@
-import assert from 'node:assert';
-import lwip from '../../index.js';
-import imgs from '../imgs.js';
-import Image from '../../lib/Image.js';
+import assert from "node:assert";
+import lwip from "../../index.js";
+import imgs from "../imgs.js";
+import Image from "../../lib/Image.js";
 
-describe('batch.paste arguments validation', () => {
+describe("batch.paste arguments validation", () => {
 
     let batch;
     beforeEach(done => {
@@ -13,56 +13,56 @@ describe('batch.paste arguments validation', () => {
         });
     });
 
-    describe('invalid pasted image (1)', () => {
-        it('should throw an error', () => {
+    describe("invalid pasted image (1)", () => {
+        it("should throw an error", () => {
             batch.paste.bind(batch, 0, 0, {}, () => {}).should.throwError();
         });
     });
 
-    describe('invalid pasted image (2)', () => {
-        it('should throw an error', () => {
+    describe("invalid pasted image (2)", () => {
+        it("should throw an error", () => {
             batch.paste.bind(batch, 0, 0, null, () => {}).should.throwError();
         });
     });
 
-    describe('invalid pasted image (3)', () => {
-        it('should throw an error', () => {
+    describe("invalid pasted image (3)", () => {
+        it("should throw an error", () => {
             batch.paste.bind(batch, 0, 0, () => {}).should.throwError();
         });
     });
 
-    describe('invalid pasted image (4)', () => {
-        it('should throw an error', () => {
+    describe("invalid pasted image (4)", () => {
+        it("should throw an error", () => {
             batch.paste.bind(batch, 0, 0, () => {}, () => {}).should.throwError();
         });
     });
 
-    describe('invalid pasted image (5)', () => {
-        it('should throw an error', () => {
+    describe("invalid pasted image (5)", () => {
+        it("should throw an error", () => {
             batch.paste.bind(batch, 0, 0, undefined, () => {}).should.throwError();
         });
     });
 
-    describe('invalid pasted image (6)', () => {
-        it('should throw an error', () => {
+    describe("invalid pasted image (6)", () => {
+        it("should throw an error", () => {
             batch.paste.bind(batch, 0, 0, 0, () => {}).should.throwError();
         });
     });
 
-    describe('invalid pasted image (7)', () => {
-        it('should throw an error', () => {
-            batch.paste.bind(batch, 0, 0, 'foo', () => {
+    describe("invalid pasted image (7)", () => {
+        it("should throw an error", () => {
+            batch.paste.bind(batch, 0, 0, "foo", () => {
             }).should.throwError();
         });
     });
 
-    describe('invalid pasted image (8)', () => {
-        it('should throw an error', () => {
+    describe("invalid pasted image (8)", () => {
+        it("should throw an error", () => {
             batch.paste.bind(batch, 0, 0, [1, 2, 3], () => {}).should.throwError();
         });
     });
 
-    describe('pasted image exceeds dimensions', () => {
+    describe("pasted image exceeds dimensions", () => {
 
 
         let pst;
@@ -73,8 +73,8 @@ describe('batch.paste arguments validation', () => {
             });
         });
 
-        describe('at the time of exec', () => {
-            it('should return an error', done => {
+        describe("at the time of exec", () => {
+            it("should return an error", done => {
                 assert(pst instanceof Image);
                 batch.paste.bind(batch, 10, 10, pst).should.not.throwError();
                 batch.exec(err => {
@@ -85,8 +85,8 @@ describe('batch.paste arguments validation', () => {
             });
         });
 
-        describe('before exec', () => {
-            it('should not return an error', done => {
+        describe("before exec", () => {
+            it("should not return an error", done => {
                 assert(pst instanceof Image);
                 batch.paste.bind(batch, 10, 10, pst).should.not.throwError();
                 pst.scale(0.1, err => {

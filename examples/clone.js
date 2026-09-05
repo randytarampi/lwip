@@ -1,4 +1,4 @@
-import lwip from '../index.js';
+import lwip from "../index.js";
 
 /**
  * Example for using LWIP to clone an image.
@@ -8,7 +8,7 @@ import lwip from '../index.js';
  */
 
 
-lwip.open('lena.jpg', (err, image) => {
+lwip.open("lena.jpg", (err, image) => {
     if (err) return console.log(err);
 
     image.batch()
@@ -18,24 +18,24 @@ lwip.open('lena.jpg', (err, image) => {
             if (err) return console.log(err);
 
             image.clone((err, clone1) => {
-                if (err) return console.log('clone1:', err);
+                if (err) return console.log("clone1:", err);
                 clone1.batch()
-                    .mirror('y')
+                    .mirror("y")
                     .hue(100)
-                    .writeFile('lena_clone1.png', err => {
+                    .writeFile("lena_clone1.png", err => {
                         if (err) return console.log(err);
-                        console.log('clone1: done');
+                        console.log("clone1: done");
                     });
             });
 
             image.clone((err, clone2) => {
-                if (err) return console.log('clone2:', err);
+                if (err) return console.log("clone2:", err);
                 clone2.batch()
                     .fade(0.5)
-                    .mirror('x')
-                    .writeFile('lena_clone2.png', err => {
+                    .mirror("x")
+                    .writeFile("lena_clone2.png", err => {
                         if (err) return console.log(err);
-                        console.log('clone2: done');
+                        console.log("clone2: done");
                     });
             });
 

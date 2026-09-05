@@ -1,13 +1,13 @@
 // methods should throw errors when arguments are invalid
 
 
-import lwip from '../../index.js';
-import imgs from '../imgs.js';
+import lwip from "../../index.js";
+import imgs from "../imgs.js";
 
 // methods should throw errors when arguments are invalid
 
 
-describe('batch.writeFile arguments validation', () => {
+describe("batch.writeFile arguments validation", () => {
 
     let batch;
     before(done => {
@@ -17,38 +17,38 @@ describe('batch.writeFile arguments validation', () => {
         });
     });
 
-    describe('invalid encoding format', () => {
-        it('should throw an error', () => {
-            batch.writeFile.bind(batch, 'res.jpg', 'jjpeg').should.throwError();
+    describe("invalid encoding format", () => {
+        it("should throw an error", () => {
+            batch.writeFile.bind(batch, "res.jpg", "jjpeg").should.throwError();
         });
     });
 
-    describe('JPEG params', () => {
+    describe("JPEG params", () => {
 
-        describe('invalid quality', () => {
-            it('should throw an error', () => {
-                batch.writeFile.bind(batch, 'res.jpg', 'jpeg', {
-                    quality: 'foo'
+        describe("invalid quality", () => {
+            it("should throw an error", () => {
+                batch.writeFile.bind(batch, "res.jpg", "jpeg", {
+                    quality: "foo"
                 }).should.throwError();
             });
         });
 
     });
 
-    describe('PNG params', () => {
+    describe("PNG params", () => {
 
-        describe('invalid compression', () => {
-            it('should throw an error', () => {
-                batch.writeFile.bind(batch, 'res.png', 'png', {
-                    compression: 'foo'
+        describe("invalid compression", () => {
+            it("should throw an error", () => {
+                batch.writeFile.bind(batch, "res.png", "png", {
+                    compression: "foo"
                 }, () => {}).should.throwError();
             });
         });
 
-        describe('invalid interlaced', () => {
-            it('should throw an error', () => {
-                batch.writeFile.bind(batch, 'res.png', 'png', {
-                    interlaced: 'foo'
+        describe("invalid interlaced", () => {
+            it("should throw an error", () => {
+                batch.writeFile.bind(batch, "res.png", "png", {
+                    interlaced: "foo"
                 }, () => {}).should.throwError();
             });
         });

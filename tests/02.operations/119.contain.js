@@ -1,16 +1,16 @@
-import { dirname, join } from 'node:path';
-import assert from 'node:assert';
-import { mkdirp } from 'mkdirp';
-import lwip from '../../index.js';
-import imgs from '../imgs.js';
-import { fileURLToPath } from 'node:url';
+import { dirname, join } from "node:path";
+import assert from "node:assert";
+import { mkdirp } from "mkdirp";
+import lwip from "../../index.js";
+import imgs from "../imgs.js";
+import { fileURLToPath } from "node:url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-const tmpDir = join(__dirname, '../results');
-const basename = 'contain';
+const tmpDir = join(__dirname, "../results");
+const basename = "contain";
 let current;
 
-describe('lwip.contain', () => {
+describe("lwip.contain", () => {
 
     let image;
 
@@ -26,7 +26,7 @@ describe('lwip.contain', () => {
     });
 
     afterEach(done => {
-        image.writeFile(join(tmpDir, current.join('_') + '.gif'), 'gif', {
+        image.writeFile(join(tmpDir, current.join("_") + ".gif"), "gif", {
             colors: 256,
             interlaced: true
         }, done);
@@ -36,9 +36,9 @@ describe('lwip.contain', () => {
         current = [ basename ];
     });
 
-    describe('800X100, no color, unspecified interpolation', () => {
-        it('image should have the correct size', done => {
-            current.push('800X100','no_color','unspecified_inter');
+    describe("800X100, no color, unspecified interpolation", () => {
+        it("image should have the correct size", done => {
+            current.push("800X100","no_color","unspecified_inter");
             image.contain(800, 100, (err, im) => {
                 if (err) return done(err);
                 assert(im.width() === 800);
@@ -48,10 +48,10 @@ describe('lwip.contain', () => {
         });
     });
 
-    describe('100X800, no color, lanczos interpolation', () => {
-        it('image should have the correct size', done => {
-            current.push('100X800','no_color','lanczos');
-            image.contain(100, 800, 'lanczos', (err, im) => {
+    describe("100X800, no color, lanczos interpolation", () => {
+        it("image should have the correct size", done => {
+            current.push("100X800","no_color","lanczos");
+            image.contain(100, 800, "lanczos", (err, im) => {
                 if (err) return done(err);
                 assert(im.width() === 100);
                 assert(im.height() === 800);
@@ -60,10 +60,10 @@ describe('lwip.contain', () => {
         });
     });
 
-    describe('100X400, gray, unspecified interpolation', () => {
-        it('image should have the correct size', done => {
-            current.push('100X400','gray','unspecified_inter');
-            image.contain(100, 400, 'gray', (err, im) => {
+    describe("100X400, gray, unspecified interpolation", () => {
+        it("image should have the correct size", done => {
+            current.push("100X400","gray","unspecified_inter");
+            image.contain(100, 400, "gray", (err, im) => {
                 if (err) return done(err);
                 assert(im.width() === 100);
                 assert(im.height() === 400);
@@ -72,10 +72,10 @@ describe('lwip.contain', () => {
         });
     });
 
-    describe('400X100, gray, lanczos interpolation', () => {
-        it('image should have the correct size', done => {
-            current.push('400X100','gray','lanczos');
-            image.contain(400, 100, 'gray', 'lanczos', (err, im) => {
+    describe("400X100, gray, lanczos interpolation", () => {
+        it("image should have the correct size", done => {
+            current.push("400X100","gray","lanczos");
+            image.contain(400, 100, "gray", "lanczos", (err, im) => {
                 if (err) return done(err);
                 assert(im.width() === 400);
                 assert(im.height() === 100);

@@ -1,16 +1,16 @@
-import { dirname, join } from 'node:path';
-import assert from 'node:assert';
-import { mkdirp } from 'mkdirp';
-import lwip from '../../index.js';
-import imgs from '../imgs.js';
-import { fileURLToPath } from 'node:url';
+import { dirname, join } from "node:path";
+import assert from "node:assert";
+import { mkdirp } from "mkdirp";
+import lwip from "../../index.js";
+import imgs from "../imgs.js";
+import { fileURLToPath } from "node:url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-const tmpDir = join(__dirname, '../results');
-const basename = 'scale';
+const tmpDir = join(__dirname, "../results");
+const basename = "scale";
 let current;
 
-describe('lwip.scale', () => {
+describe("lwip.scale", () => {
 
     let image;
 
@@ -26,13 +26,13 @@ describe('lwip.scale', () => {
     });
 
     afterEach(done => {
-        image.writeFile(join(tmpDir, current.join('_') + '.png'), 'png', {
-            compression: 'high',
+        image.writeFile(join(tmpDir, current.join("_") + ".png"), "png", {
+            compression: "high",
             interlaced: true
         }, done);
     });
 
-    describe('width 150%, height 120%', () => {
+    describe("width 150%, height 120%", () => {
 
         const rw = 1.5,
             rh = 1.2,
@@ -40,12 +40,12 @@ describe('lwip.scale', () => {
             height = 0 | rh * 333;
 
         beforeEach(() => {
-            current = [basename, 'w' + rw, 'h' + rh];
+            current = [basename, "w" + rw, "h" + rh];
         });
 
-        describe('unspecified interpolation', () => {
-            it('image should have the correct size', done => {
-                current.push('unspecified_inter');
+        describe("unspecified interpolation", () => {
+            it("image should have the correct size", done => {
+                current.push("unspecified_inter");
                 image.scale(rw, rh, (err, im) => {
                     if (err) return done(err);
                     assert(im.width() === width);
@@ -55,10 +55,10 @@ describe('lwip.scale', () => {
             });
         });
 
-        describe('lanczos interpolation', () => {
-            it('image should have the correct size', done => {
-                current.push('lanczos');
-                image.scale(rw, rh, 'lanczos', (err, im) => {
+        describe("lanczos interpolation", () => {
+            it("image should have the correct size", done => {
+                current.push("lanczos");
+                image.scale(rw, rh, "lanczos", (err, im) => {
                     if (err) return done(err);
                     assert(im.width() === width);
                     assert(im.height() === height);
@@ -67,10 +67,10 @@ describe('lwip.scale', () => {
             });
         });
 
-        describe('cubic interpolation', () => {
-            it('image should have the correct size', done => {
-                current.push('cubic');
-                image.scale(rw, rh, 'cubic', (err, im) => {
+        describe("cubic interpolation", () => {
+            it("image should have the correct size", done => {
+                current.push("cubic");
+                image.scale(rw, rh, "cubic", (err, im) => {
                     if (err) return done(err);
                     assert(im.width() === width);
                     assert(im.height() === height);
@@ -79,10 +79,10 @@ describe('lwip.scale', () => {
             });
         });
 
-        describe('nearest-neighbor interpolation', () => {
-            it('image should have the correct size', done => {
-                current.push('nearest-neighbor');
-                image.scale(rw, rh, 'nearest-neighbor', (err, im) => {
+        describe("nearest-neighbor interpolation", () => {
+            it("image should have the correct size", done => {
+                current.push("nearest-neighbor");
+                image.scale(rw, rh, "nearest-neighbor", (err, im) => {
                     if (err) return done(err);
                     assert(im.width() === width);
                     assert(im.height() === height);
@@ -91,10 +91,10 @@ describe('lwip.scale', () => {
             });
         });
 
-        describe('moving-average interpolation', () => {
-            it('image should have the correct size', done => {
-                current.push('moving-average');
-                image.scale(rw, rh, 'moving-average', (err, im) => {
+        describe("moving-average interpolation", () => {
+            it("image should have the correct size", done => {
+                current.push("moving-average");
+                image.scale(rw, rh, "moving-average", (err, im) => {
                     if (err) return done(err);
                     assert(im.width() === width);
                     assert(im.height() === height);
@@ -103,10 +103,10 @@ describe('lwip.scale', () => {
             });
         });
 
-        describe('linear interpolation', () => {
-            it('image should have the correct size', done => {
-                current.push('linear');
-                image.scale(rw, rh, 'linear', (err, im) => {
+        describe("linear interpolation", () => {
+            it("image should have the correct size", done => {
+                current.push("linear");
+                image.scale(rw, rh, "linear", (err, im) => {
                     if (err) return done(err);
                     assert(im.width() === width);
                     assert(im.height() === height);
@@ -115,10 +115,10 @@ describe('lwip.scale', () => {
             });
         });
 
-        describe('grid interpolation', () => {
-            it('image should have the correct size', done => {
-                current.push('grid');
-                image.scale(rw, rh, 'grid', (err, im) => {
+        describe("grid interpolation", () => {
+            it("image should have the correct size", done => {
+                current.push("grid");
+                image.scale(rw, rh, "grid", (err, im) => {
                     if (err) return done(err);
                     assert(im.width() === width);
                     assert(im.height() === height);
@@ -129,19 +129,19 @@ describe('lwip.scale', () => {
 
     });
 
-    describe('width and height 25%', () => {
+    describe("width and height 25%", () => {
 
         const r = 0.25,
             width = 0 | r * 500,
             height = 0 | r * 333;
 
         beforeEach(() => {
-            current = [basename, 'r' + r];
+            current = [basename, "r" + r];
         });
 
-        describe('unspecified interpolation', () => {
-            it('image should have the correct size', done => {
-                current.push('unspecified_inter');
+        describe("unspecified interpolation", () => {
+            it("image should have the correct size", done => {
+                current.push("unspecified_inter");
                 image.scale(r, (err, im) => {
                     if (err) return done(err);
                     assert(im.width() === width);

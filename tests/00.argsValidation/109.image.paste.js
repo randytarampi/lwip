@@ -1,10 +1,10 @@
-import assert from 'node:assert';
-import lwip from '../../index.js';
-import imgs from '../imgs.js';
-import 'should';
-import Image from '../../lib/Image.js';
+import assert from "node:assert";
+import lwip from "../../index.js";
+import imgs from "../imgs.js";
+import "should";
+import Image from "../../lib/Image.js";
 
-describe('image.paste arguments validation', () => {
+describe("image.paste arguments validation", () => {
 
     let image;
     before(done => {
@@ -14,56 +14,56 @@ describe('image.paste arguments validation', () => {
         });
     });
 
-    describe('invalid pasted image (1)', () => {
-        it('should throw an error', () => {
+    describe("invalid pasted image (1)", () => {
+        it("should throw an error", () => {
             image.paste.bind(image, 0, 0, {}, () => {}).should.throwError();
         });
     });
 
-    describe('invalid pasted image (2)', () => {
-        it('should throw an error', () => {
+    describe("invalid pasted image (2)", () => {
+        it("should throw an error", () => {
             image.paste.bind(image, 0, 0, null, () => {}).should.throwError();
         });
     });
 
-    describe('invalid pasted image (3)', () => {
-        it('should throw an error', () => {
+    describe("invalid pasted image (3)", () => {
+        it("should throw an error", () => {
             image.paste.bind(image, 0, 0, () => {}).should.throwError();
         });
     });
 
-    describe('invalid pasted image (4)', () => {
-        it('should throw an error', () => {
+    describe("invalid pasted image (4)", () => {
+        it("should throw an error", () => {
             image.paste.bind(image, 0, 0, () => {}, () => {}).should.throwError();
         });
     });
 
-    describe('invalid pasted image (5)', () => {
-        it('should throw an error', () => {
+    describe("invalid pasted image (5)", () => {
+        it("should throw an error", () => {
             image.paste.bind(image, 0, 0, undefined, () => {}).should.throwError();
         });
     });
 
-    describe('invalid pasted image (6)', () => {
-        it('should throw an error', () => {
+    describe("invalid pasted image (6)", () => {
+        it("should throw an error", () => {
             image.paste.bind(image, 0, 0, 0, () => {}).should.throwError();
         });
     });
 
-    describe('invalid pasted image (7)', () => {
-        it('should throw an error', () => {
-            image.paste.bind(image, 0, 0, 'foo', () => {
+    describe("invalid pasted image (7)", () => {
+        it("should throw an error", () => {
+            image.paste.bind(image, 0, 0, "foo", () => {
             }).should.throwError();
         });
     });
 
-    describe('invalid pasted image (8)', () => {
-        it('should throw an error', () => {
+    describe("invalid pasted image (8)", () => {
+        it("should throw an error", () => {
             image.paste.bind(image, 0, 0, [1, 2, 3], () => {}).should.throwError();
         });
     });
 
-    describe('pasted image exceeds dimensions', () => {
+    describe("pasted image exceeds dimensions", () => {
 
 
         let clone;
@@ -74,7 +74,7 @@ describe('image.paste arguments validation', () => {
             });
         });
 
-        it('should throw an error', () => {
+        it("should throw an error", () => {
             assert(clone instanceof Image);
             image.paste.bind(image, 10, 10, clone, () => {}).should.throwError();
         });

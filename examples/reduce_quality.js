@@ -1,16 +1,16 @@
-import lwip from '../index.js';
+import lwip from "../index.js";
 
 /**
  * Example for using LWIP to reduce the quality of a JPEG file.
  */
 
 
-lwip.open('lena.jpg', (err, image) => {
+lwip.open("lena.jpg", (err, image) => {
     if (err) return console.log(err);
-    image.writeFile('lena_low_quality.jpg', {
+    image.writeFile("lena_low_quality.jpg", {
         quality: 10
     }, err => {
         if (err) return console.log(err);
-        console.log('done');
+        console.log("done");
     });
 });

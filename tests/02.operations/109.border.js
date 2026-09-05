@@ -1,16 +1,16 @@
-import { dirname, join } from 'node:path';
-import assert from 'node:assert';
-import { mkdirp } from 'mkdirp';
-import lwip from '../../index.js';
-import imgs from '../imgs.js';
-import { fileURLToPath } from 'node:url';
+import { dirname, join } from "node:path";
+import assert from "node:assert";
+import { mkdirp } from "mkdirp";
+import lwip from "../../index.js";
+import imgs from "../imgs.js";
+import { fileURLToPath } from "node:url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-const tmpDir = join(__dirname, '../results');
-const basename = 'border';
+const tmpDir = join(__dirname, "../results");
+const basename = "border";
 let current;
 
-describe('lwip.border', () => {
+describe("lwip.border", () => {
 
     let image;
 
@@ -30,17 +30,17 @@ describe('lwip.border', () => {
     });
 
     afterEach(done => {
-        image.writeFile(join(tmpDir, current.join('_') + '.gif'), 'gif', {
+        image.writeFile(join(tmpDir, current.join("_") + ".gif"), "gif", {
             colors: 256
         }, done);
     });
 
-    describe('19 pixels, green', () => {
+    describe("19 pixels, green", () => {
         const width = 500 + 19 * 2,
             height = 333 + 19 * 2;
-        it('image should have the correct size', done => {
-            current.push('19px_green');
-            image.border(19, 'green', (err, im) => {
+        it("image should have the correct size", done => {
+            current.push("19px_green");
+            image.border(19, "green", (err, im) => {
                 if (err) return done(err);
                 assert(im.width() === width);
                 assert(im.height() === height);
@@ -49,11 +49,11 @@ describe('lwip.border', () => {
         });
     });
 
-    describe('9 pixels, [100,200,25]', () => {
+    describe("9 pixels, [100,200,25]", () => {
         const width = 500 + 9 * 2,
             height = 333 + 9 * 2;
-        it('image should have the correct size', done => {
-            current.push('9px_[100,200,25]');
+        it("image should have the correct size", done => {
+            current.push("9px_[100,200,25]");
             image.border(9, [100, 200, 25], (err, im) => {
                 if (err) return done(err);
                 assert(im.width() === width);
@@ -63,11 +63,11 @@ describe('lwip.border', () => {
         });
     });
 
-    describe('4 pixels, {r:100,g:200,b:25}', () => {
+    describe("4 pixels, {r:100,g:200,b:25}", () => {
         const width = 500 + 4 * 2,
             height = 333 + 4 * 2;
-        it('image should have the correct size', done => {
-            current.push('4px_r100,g200,b25');
+        it("image should have the correct size", done => {
+            current.push("4px_r100,g200,b25");
             image.border(4, {
                 r: 100,
                 g: 200,

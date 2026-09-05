@@ -1,15 +1,15 @@
-import { dirname, join } from 'node:path';
-import { mkdirp } from 'mkdirp';
-import lwip from '../../index.js';
-import imgs from '../imgs.js';
-import { fileURLToPath } from 'node:url';
+import { dirname, join } from "node:path";
+import { mkdirp } from "mkdirp";
+import lwip from "../../index.js";
+import imgs from "../imgs.js";
+import { fileURLToPath } from "node:url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-const tmpDir = join(__dirname, '../results');
-const basename = 'blur';
+const tmpDir = join(__dirname, "../results");
+const basename = "blur";
 let current;
 
-describe('lwip.blur', () => {
+describe("lwip.blur", () => {
 
     let image;
 
@@ -29,31 +29,31 @@ describe('lwip.blur', () => {
     });
 
     afterEach(done => {
-        image.writeFile(join(tmpDir, current.join('_') + '.jpg'), 'jpeg', {
+        image.writeFile(join(tmpDir, current.join("_") + ".jpg"), "jpeg", {
             quality: 100
         }, done);
     });
 
-    describe('SD=1', () => {
+    describe("SD=1", () => {
         const sd = 1;
-        it('should succeed', done => {
-            current.push('sd' + sd);
+        it("should succeed", done => {
+            current.push("sd" + sd);
             image.blur(sd, done);
         });
     });
 
-    describe('SD=5.5', () => {
+    describe("SD=5.5", () => {
         const sd = 5.5;
-        it('should succeed', done => {
-            current.push('sd' + sd);
+        it("should succeed", done => {
+            current.push("sd" + sd);
             image.blur(sd, done);
         });
     });
 
-    describe('SD=20', () => {
+    describe("SD=20", () => {
         const sd = 20;
-        it('should succeed', done => {
-            current.push('sd' + sd);
+        it("should succeed", done => {
+            current.push("sd" + sd);
             image.blur(sd, done);
         });
     });

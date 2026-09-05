@@ -1,6 +1,6 @@
-import assert from 'node:assert';
-import lwip from '../../index.js';
-import imgs from '../imgs.js';
+import assert from "node:assert";
+import lwip from "../../index.js";
+import imgs from "../imgs.js";
 
 const width = 500,
     height = 333;
@@ -14,27 +14,27 @@ before(done => {
 });
 
 
-describe('lwip.width', () => {
-    it('should return correct width', () => {
+describe("lwip.width", () => {
+    it("should return correct width", () => {
         assert(image.width() === width);
     });
 });
 
-describe('lwip.height', () => {
-    it('should return correct height', () => {
+describe("lwip.height", () => {
+    it("should return correct height", () => {
         assert(image.height() === height);
     });
 });
 
-describe('lwip.size', () => {
-    it('should return correct size', () => {
+describe("lwip.size", () => {
+    it("should return correct size", () => {
         assert(image.size().width === width);
         assert(image.size().height === height);
     });
 });
 
-describe('lwip.getPixel', () => {
-    it('should return correct color at 0,0', () => {
+describe("lwip.getPixel", () => {
+    it("should return correct color at 0,0", () => {
         const color = image.getPixel(0, 0);
         assert(color.r === 48);
         assert(color.g === 86);
@@ -42,7 +42,7 @@ describe('lwip.getPixel', () => {
         assert(color.a === 100);
     });
 
-    it('should return correct color at 418, 242', () => {
+    it("should return correct color at 418, 242", () => {
         const color = image.getPixel(418, 242);
         assert(color.r === 208);
         assert(color.g === 228);
@@ -50,7 +50,7 @@ describe('lwip.getPixel', () => {
         assert(color.a === 100);
     });
 
-    it('should return correct color at 499, 332', () => {
+    it("should return correct color at 499, 332", () => {
         const color = image.getPixel(499, 332);
         assert(color.r === 31);
         assert(color.g === 26 || color.g === 27);
@@ -59,8 +59,8 @@ describe('lwip.getPixel', () => {
     });
 });
 
-describe('lwip.clone', () => {
-    it('should return a new image object', done => {
+describe("lwip.clone", () => {
+    it("should return a new image object", done => {
         image.clone((err, clonedImage) => {
             if (err) return done(err);
             clonedImage.resize(100, 100, err => {
@@ -75,8 +75,8 @@ describe('lwip.clone', () => {
     });
 });
 
-describe('lwip.extract', () => {
-    it('should return a new image object', done => {
+describe("lwip.extract", () => {
+    it("should return a new image object", done => {
         image.extract(100, 120, 150, 140, (err, exImage) => {
             if (err) return done(err);
             assert(image.width() === width);
@@ -88,15 +88,15 @@ describe('lwip.extract', () => {
     });
 });
 
-describe('lwip.getMetadata', () => {
-    it('should return correct metadata', done => {
+describe("lwip.getMetadata", () => {
+    it("should return correct metadata", done => {
         lwip.open(imgs.png.hasMetadata, (err, img) => {
-            assert(img.getMetadata() === 'Lorem ipsum dolor sit amet');
+            assert(img.getMetadata() === "Lorem ipsum dolor sit amet");
             done();
         });
     });
 
-    it('should return null if no metadata found', done => {
+    it("should return null if no metadata found", done => {
         lwip.open(imgs.png.noMetadata, (err, img) => {
             assert(img.getMetadata() === null);
             done();
@@ -104,7 +104,7 @@ describe('lwip.getMetadata', () => {
     });
 });
 
-describe('lwip.dominantColor',function(){
+describe("lwip.dominantColor",function(){
   var t_image;
   before(function(done){
     lwip.open(imgs.jpg.colors, function(err, img) {
@@ -114,7 +114,7 @@ describe('lwip.dominantColor',function(){
     });
   });
 
-  it('should return the color that occurs the most frequently',function(done){
+  it("should return the color that occurs the most frequently",function(done){
       var color = t_image.dominantColor(10);
       assert( color.r === 255);
       assert( color.g === 252);
@@ -124,7 +124,7 @@ describe('lwip.dominantColor',function(){
   });
 
   function shouldFail(fail){
-    it('should fail when: '+fail+' is passed as a parameter',function(done){
+    it("should fail when: "+fail+" is passed as a parameter",function(done){
       var err_count = 0;
       try{
         t_image.dominantColor(fail);
@@ -139,7 +139,7 @@ describe('lwip.dominantColor',function(){
     });
   }
 
-  var fails = [ -1, 3.3, '\'tree\''];
+  var fails = [ -1, 3.3, "'tree'"];
   for(var i = 0; i < fails.length; i++)
     shouldFail(fails[i]);
 

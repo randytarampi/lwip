@@ -1,16 +1,16 @@
-import lwip from '../index.js';
+import lwip from "../index.js";
 
 /**
  * Example for using LWIP to cover a canvas with an image.
  */
 
 
-lwip.open('lena.jpg', (err, image) => {
+lwip.open("lena.jpg", (err, image) => {
     if (err) return console.log(err);
     image.cover(400,800,(err, image) => {
-        image.writeFile('lena_cover.jpg', err => {
+        image.writeFile("lena_cover.jpg", err => {
             if (err) return console.log(err);
-            console.log('done');
+            console.log("done");
         });
     });
 });

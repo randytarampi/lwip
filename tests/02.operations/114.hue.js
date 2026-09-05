@@ -1,15 +1,15 @@
-import { dirname, join } from 'node:path';
-import { mkdirp } from 'mkdirp';
-import lwip from '../../index.js';
-import imgs from '../imgs.js';
-import { fileURLToPath } from 'node:url';
+import { dirname, join } from "node:path";
+import { mkdirp } from "mkdirp";
+import lwip from "../../index.js";
+import imgs from "../imgs.js";
+import { fileURLToPath } from "node:url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-const tmpDir = join(__dirname, '../results');
-const basename = 'hue';
+const tmpDir = join(__dirname, "../results");
+const basename = "hue";
 let current;
 
-describe('lwip.hue', () => {
+describe("lwip.hue", () => {
 
     let image;
 
@@ -29,47 +29,47 @@ describe('lwip.hue', () => {
     });
 
     afterEach(done => {
-        image.writeFile(join(tmpDir, current.join('_') + '.jpg'), 'jpeg', {
+        image.writeFile(join(tmpDir, current.join("_") + ".jpg"), "jpeg", {
             quality: 100
         }, done);
     });
 
-    describe('shift=0', () => {
+    describe("shift=0", () => {
         const d = 0;
-        it('should succeed', done => {
-            current.push('d' + d);
+        it("should succeed", done => {
+            current.push("d" + d);
             image.hue(d, done);
         });
     });
 
-    describe('shift=50.5', () => {
+    describe("shift=50.5", () => {
         const d = 50.5;
-        it('should succeed', done => {
-            current.push('d' + d);
+        it("should succeed", done => {
+            current.push("d" + d);
             image.hue(d, done);
         });
     });
 
-    describe('shift=-50', () => {
+    describe("shift=-50", () => {
         const d = -50;
-        it('should succeed', done => {
-            current.push('d' + d);
+        it("should succeed", done => {
+            current.push("d" + d);
             image.hue(d, done);
         });
     });
 
-    describe('shift=500', () => {
+    describe("shift=500", () => {
         const d = 500;
-        it('should succeed', done => {
-            current.push('d' + d);
+        it("should succeed", done => {
+            current.push("d" + d);
             image.hue(d, done);
         });
     });
 
-    describe('shift=-500', () => {
+    describe("shift=-500", () => {
         const d = -500;
-        it('should succeed', done => {
-            current.push('d' + d);
+        it("should succeed", done => {
+            current.push("d" + d);
             image.hue(d, done);
         });
     });

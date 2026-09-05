@@ -1,16 +1,16 @@
-import lwip from '../index.js';
+import lwip from "../index.js";
 
 /**
  * Example for using LWIP to increase image saturation.
  */
 
 
-lwip.open('lena.jpg', (err, image) => {
+lwip.open("lena.jpg", (err, image) => {
     if (err) return console.log(err);
     image.batch()
         .saturate(0.5)
-        .writeFile('lena_saturate.jpg', err => {
+        .writeFile("lena_saturate.jpg", err => {
             if (err) return console.log(err);
-            console.log('done');
+            console.log("done");
         });
 });

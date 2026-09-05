@@ -1,16 +1,16 @@
-import lwip from '../index.js';
+import lwip from "../index.js";
 
 /**
  * Example for using LWIP to pad an image.
  */
 
 
-lwip.open('lena.jpg', (err, image) => {
+lwip.open("lena.jpg", (err, image) => {
     if (err) return console.log(err);
     image.batch()
-        .pad(10, 5, 10, 5, 'blue')
-        .writeFile('lena_pad.jpg', err => {
+        .pad(10, 5, 10, 5, "blue")
+        .writeFile("lena_pad.jpg", err => {
             if (err) return console.log(err);
-            console.log('done');
+            console.log("done");
         });
 });

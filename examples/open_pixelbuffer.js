@@ -1,4 +1,4 @@
-import lwip from '../index.js';
+import lwip from "../index.js";
 
 /**
  * Example for using LWIP to open a raw pixel buffer
@@ -41,11 +41,11 @@ for (let y = 0; y < h; y++) {
 }
 
 lwip.open(buffer, {width: w, height: h}, (err, image) => {
-    if (err) return console.log('err open', err);
+    if (err) return console.log("err open", err);
     image.batch()
         .blur(9)
-        .writeFile('image_from_pixelbuffer.png', err => {
-            if (err) return console.log('err write', err);
-            console.log('done');
+        .writeFile("image_from_pixelbuffer.png", err => {
+            if (err) return console.log("err write", err);
+            console.log("done");
         });
 });

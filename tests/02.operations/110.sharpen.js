@@ -1,15 +1,15 @@
-import { dirname, join } from 'node:path';
-import { mkdirp } from 'mkdirp';
-import lwip from '../../index.js';
-import imgs from '../imgs.js';
-import { fileURLToPath } from 'node:url';
+import { dirname, join } from "node:path";
+import { mkdirp } from "mkdirp";
+import lwip from "../../index.js";
+import imgs from "../imgs.js";
+import { fileURLToPath } from "node:url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-const tmpDir = join(__dirname, '../results');
-const basename = 'sharpen';
+const tmpDir = join(__dirname, "../results");
+const basename = "sharpen";
 let current;
 
-describe('lwip.sharpen', () => {
+describe("lwip.sharpen", () => {
 
     let image;
 
@@ -29,47 +29,47 @@ describe('lwip.sharpen', () => {
     });
 
     afterEach(done => {
-        image.writeFile(join(tmpDir, current.join('_') + '.jpg'), 'jpeg', {
+        image.writeFile(join(tmpDir, current.join("_") + ".jpg"), "jpeg", {
             quality: 100
         }, done);
     });
 
-    describe('amp=0', () => {
+    describe("amp=0", () => {
         const amp = 0;
-        it('should succeed', done => {
-            current.push('amp' + amp);
+        it("should succeed", done => {
+            current.push("amp" + amp);
             image.sharpen(amp, done);
         });
     });
 
-    describe('amp=5.5', () => {
+    describe("amp=5.5", () => {
         const amp = 5.5;
-        it('should succeed', done => {
-            current.push('amp' + amp);
+        it("should succeed", done => {
+            current.push("amp" + amp);
             image.sharpen(amp, done);
         });
     });
 
-    describe('amp=99', () => {
+    describe("amp=99", () => {
         const amp = 99;
-        it('should succeed', done => {
-            current.push('amp' + amp);
+        it("should succeed", done => {
+            current.push("amp" + amp);
             image.sharpen(amp, done);
         });
     });
 
-    describe('amp=-5.5', () => {
+    describe("amp=-5.5", () => {
         const amp = -5.5;
-        it('should succeed', done => {
-            current.push('amp' + amp);
+        it("should succeed", done => {
+            current.push("amp" + amp);
             image.sharpen(amp, done);
         });
     });
 
-    describe('amp=-99', () => {
+    describe("amp=-99", () => {
         const amp = -99;
-        it('should succeed', done => {
-            current.push('amp' + amp);
+        it("should succeed", done => {
+            current.push("amp" + amp);
             image.sharpen(amp, done);
         });
     });

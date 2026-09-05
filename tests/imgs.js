@@ -1,33 +1,33 @@
-import { dirname, join } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const imbase = 'images/';
+const imbase = "images/";
 
 export default {
-    inv: join(__dirname, imbase, 'no.such.image'),
+    inv: join(__dirname, imbase, "no.such.image"),
     jpg: {
-        gs: join(__dirname, imbase, 'gs.jpg'),
-        rgb: join(__dirname, imbase, 'rgb.jpg'),
-        noex: join(__dirname, imbase, 'rgbjpg'),
-        inv: join(__dirname, imbase, 'invalid.jpg'),
-        colors: join(__dirname, imbase, 'colors.jpg')
+        gs: join(__dirname, imbase, "gs.jpg"),
+        rgb: join(__dirname, imbase, "rgb.jpg"),
+        noex: join(__dirname, imbase, "rgbjpg"),
+        inv: join(__dirname, imbase, "invalid.jpg"),
+        colors: join(__dirname, imbase, "colors.jpg")
 
     },
     png: {
-        gs: join(__dirname, imbase, 'gs.png'),
-        rgb: join(__dirname, imbase, 'rgb.png'),
-        noex: join(__dirname, imbase, 'rgbpng'),
-        trans: join(__dirname, imbase, 'trans.png'),
-        inv: join(__dirname, imbase, 'invalid.png'),
-        hasMetadata: join(__dirname, imbase, 'hasMetadata.png'),
-        noMetadata: join(__dirname, imbase, 'noMetadata.png')
+        gs: join(__dirname, imbase, "gs.png"),
+        rgb: join(__dirname, imbase, "rgb.png"),
+        noex: join(__dirname, imbase, "rgbpng"),
+        trans: join(__dirname, imbase, "trans.png"),
+        inv: join(__dirname, imbase, "invalid.png"),
+        hasMetadata: join(__dirname, imbase, "hasMetadata.png"),
+        noMetadata: join(__dirname, imbase, "noMetadata.png")
     },
     gif: {
-        gs: join(__dirname, imbase, 'gs.gif'),
-        rgb: join(__dirname, imbase, 'rgb.gif'),
-        noex: join(__dirname, imbase, 'rgbgif'),
-        trans: join(__dirname, imbase, 'trans.gif'),
-        inv: join(__dirname, imbase, 'invalid.gif')
+        gs: join(__dirname, imbase, "gs.gif"),
+        rgb: join(__dirname, imbase, "rgb.gif"),
+        noex: join(__dirname, imbase, "rgbgif"),
+        trans: join(__dirname, imbase, "trans.gif"),
+        inv: join(__dirname, imbase, "invalid.gif")
     }
 };

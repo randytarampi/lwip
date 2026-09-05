@@ -1,16 +1,16 @@
-import lwip from '../index.js';
+import lwip from "../index.js";
 
 /**
  * Example for using LWIP to contain an image in a canvas.
  */
 
 
-lwip.open('lena.jpg', (err, image) => {
+lwip.open("lena.jpg", (err, image) => {
     if (err) return console.log(err);
-    image.contain(400,700,'green',(err, image) => {
-        image.writeFile('lena_contain.jpg', err => {
+    image.contain(400,700,"green",(err, image) => {
+        image.writeFile("lena_contain.jpg", err => {
             if (err) return console.log(err);
-            console.log('done');
+            console.log("done");
         });
     });
 });

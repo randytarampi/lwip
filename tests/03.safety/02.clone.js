@@ -1,8 +1,8 @@
-import assert from 'node:assert';
-import lwip from '../../index.js';
-import imgs from '../imgs.js';
+import assert from "node:assert";
+import lwip from "../../index.js";
+import imgs from "../imgs.js";
 
-describe('clone correct behavior', () => {
+describe("clone correct behavior", () => {
 
     let image;
 
@@ -13,8 +13,8 @@ describe('clone correct behavior', () => {
         });
     });
 
-    describe('image.clone', () => {
-        it('should clone the image at the correct state', done => {
+    describe("image.clone", () => {
+        it("should clone the image at the correct state", done => {
             const width = image.width(),
                 height = image.height();
             image.clone((err, clone) => {

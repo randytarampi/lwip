@@ -1,14 +1,14 @@
-import lwip from '../index.js';
+import lwip from "../index.js";
 
 /**
  * Example for using LWIP to convert an image from png to jpg.
  */
 
 
-lwip.open('lena.gif', (err, image) => {
+lwip.open("lena.gif", (err, image) => {
     if (err) return console.log(err);
-    image.writeFile('lena_from_gif.png', err => {
+    image.writeFile("lena_from_gif.png", err => {
         if (err) return console.log(err);
-        console.log('done');
+        console.log("done");
     });
 });

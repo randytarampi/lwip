@@ -1,15 +1,15 @@
-import { dirname, join } from 'node:path';
-import { mkdirp } from 'mkdirp';
-import lwip from '../../index.js';
-import imgs from '../imgs.js';
-import { fileURLToPath } from 'node:url';
+import { dirname, join } from "node:path";
+import { mkdirp } from "mkdirp";
+import lwip from "../../index.js";
+import imgs from "../imgs.js";
+import { fileURLToPath } from "node:url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-const tmpDir = join(__dirname, '../results');
-const basename = 'paste';
+const tmpDir = join(__dirname, "../results");
+const basename = "paste";
 let current;
 
-describe('lwip.paste', () => {
+describe("lwip.paste", () => {
 
     let back, front;
     // back is the regular image. front is flipped on 'y' axis.
@@ -24,7 +24,7 @@ describe('lwip.paste', () => {
             back = img;
             img.clone((err, clone) => {
                 if (err) return done(err);
-                clone.mirror('y', (err, clone) => {
+                clone.mirror("y", (err, clone) => {
                     if (err) return done(err);
                     front = clone;
                     done();
@@ -38,68 +38,68 @@ describe('lwip.paste', () => {
     });
 
     afterEach(done => {
-        back.writeFile(join(tmpDir, current.join('_') + '.png'), done);
+        back.writeFile(join(tmpDir, current.join("_") + ".png"), done);
     });
 
-    describe('background transparent, front opaque', () => {
+    describe("background transparent, front opaque", () => {
         beforeEach(done => {
             back.fade(1, done);
         });
-        it('should see flipped image', done => {
-            current.push('bgTrans_frontOpaque_resultFlipped');
+        it("should see flipped image", done => {
+            current.push("bgTrans_frontOpaque_resultFlipped");
             back.paste(0, 0, front, done);
         });
     });
 
-    describe('background opaque, front transparent', () => {
+    describe("background opaque, front transparent", () => {
         beforeEach(done => {
             front.fade(1, done);
         });
-        it('should see normal image', done => {
-            current.push('bgOpaque_frontTrans_resultNormal');
+        it("should see normal image", done => {
+            current.push("bgOpaque_frontTrans_resultNormal");
             back.paste(0, 0, front, done);
         });
     });
 
-    describe('background opaque, front 50%', () => {
+    describe("background opaque, front 50%", () => {
         beforeEach(done => {
             front.fade(0.5, done);
         });
-        it('should see blended image', done => {
-            current.push('bgOpaque_front50_resultBlend');
+        it("should see blended image", done => {
+            current.push("bgOpaque_front50_resultBlend");
             back.paste(0, 0, front, done);
         });
     });
 
-    describe('background 50%, front opaque', () => {
+    describe("background 50%, front opaque", () => {
         beforeEach(done => {
             back.fade(0.5, done);
         });
-        it('should see flipped image', done => {
-            current.push('bg50_frontOpaque_resultFlipped');
+        it("should see flipped image", done => {
+            current.push("bg50_frontOpaque_resultFlipped");
             back.paste(0, 0, front, done);
         });
     });
 
-    describe('background 50%, front 50%', () => {
+    describe("background 50%, front 50%", () => {
         beforeEach(done => {
             back.fade(0.5, done);
         });
         beforeEach(done => {
             front.fade(0.5, done);
         });
-        it('should see blended transparent image', done => {
-            current.push('bg50_front50_resultBlendTrans');
+        it("should see blended transparent image", done => {
+            current.push("bg50_front50_resultBlendTrans");
             back.paste(0, 0, front, done);
         });
     });
 
-    describe('front scaled 50% in middle', () => {
+    describe("front scaled 50% in middle", () => {
         beforeEach(done => {
             front.scale(0.5, done);
         });
-        it('should see small front in middle of back', done => {
-            current.push('front_in_middle');
+        it("should see small front in middle of back", done => {
+            current.push("front_in_middle");
             back.paste(back.width() / 4, back.height() / 4, front, done);
         });
     });

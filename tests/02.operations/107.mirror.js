@@ -1,15 +1,15 @@
-import { dirname, join } from 'node:path';
-import { mkdirp } from 'mkdirp';
-import lwip from '../../index.js';
-import imgs from '../imgs.js';
-import { fileURLToPath } from 'node:url';
+import { dirname, join } from "node:path";
+import { mkdirp } from "mkdirp";
+import lwip from "../../index.js";
+import imgs from "../imgs.js";
+import { fileURLToPath } from "node:url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-const tmpDir = join(__dirname, '../results');
-const basename = 'mirror';
+const tmpDir = join(__dirname, "../results");
+const basename = "mirror";
 let current;
 
-describe('lwip.mirror (/flip)', () => {
+describe("lwip.mirror (/flip)", () => {
 
     let image;
 
@@ -25,50 +25,50 @@ describe('lwip.mirror (/flip)', () => {
     });
 
     afterEach(done => {
-        image.writeFile(join(tmpDir, current.join('_') + '.gif'), 'gif', {
+        image.writeFile(join(tmpDir, current.join("_") + ".gif"), "gif", {
             colors: 256
         }, done);
     });
 
-    describe('around one axis', () => {
+    describe("around one axis", () => {
 
         beforeEach(() => {
-            current = [basename, 'axis'];
+            current = [basename, "axis"];
         });
 
-        describe('x', () => {
-            it('should succeed', done => {
-                current.push('x');
-                image.mirror('x', done);
+        describe("x", () => {
+            it("should succeed", done => {
+                current.push("x");
+                image.mirror("x", done);
             });
         });
 
-        describe('y', () => {
-            it('should succeed', done => {
-                current.push('y');
-                image.flip('y', done);
+        describe("y", () => {
+            it("should succeed", done => {
+                current.push("y");
+                image.flip("y", done);
             });
         });
 
     });
 
-    describe('around two axes', () => {
+    describe("around two axes", () => {
 
         beforeEach(() => {
-            current = [basename, 'axes'];
+            current = [basename, "axes"];
         });
 
-        describe('xy', () => {
-            it('should succeed', done => {
-                current.push('xy');
-                image.flip('xy', done);
+        describe("xy", () => {
+            it("should succeed", done => {
+                current.push("xy");
+                image.flip("xy", done);
             });
         });
 
-        describe('yx', () => {
-            it('should succeed', done => {
-                current.push('yx');
-                image.mirror('yx', done);
+        describe("yx", () => {
+            it("should succeed", done => {
+                current.push("yx");
+                image.mirror("yx", done);
             });
         });
 

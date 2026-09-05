@@ -1,19 +1,19 @@
-import { dirname, join } from 'node:path';
-import fs from 'node:fs';
-import async from 'async';
-import { mkdirp } from 'mkdirp';
-import lwip from '../../index.js';
-import utils from '../utils.js';
-import imgs from '../imgs.js';
-import { fileURLToPath } from 'node:url';
+import { dirname, join } from "node:path";
+import fs from "node:fs";
+import async from "async";
+import { mkdirp } from "mkdirp";
+import lwip from "../../index.js";
+import utils from "../utils.js";
+import imgs from "../imgs.js";
+import { fileURLToPath } from "node:url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-const tmpDir = join(__dirname, '../results'),
-    outpathJpeg = join(tmpDir, 'stress.jpg'),
-    outpathPng = join(tmpDir, 'stress.png'),
-    outpathGif = join(tmpDir, 'stress.gif');
+const tmpDir = join(__dirname, "../results"),
+    outpathJpeg = join(tmpDir, "stress.jpg"),
+    outpathPng = join(tmpDir, "stress.png"),
+    outpathGif = join(tmpDir, "stress.gif");
 
-describe('stress tests', function () {
+describe("stress tests", function () {
 
     this.timeout(120000); // 120 seconds per test
 
@@ -21,12 +21,12 @@ describe('stress tests', function () {
         return mkdirp(tmpDir);
     });
 
-    describe('open image 300 times (in parallel) and save to disk as jpeg', () => {
-        it('should succeed', done => {
+    describe("open image 300 times (in parallel) and save to disk as jpeg", () => {
+        it("should succeed", done => {
             async.times(300, (i, done) => {
-                lwip.open(imgs.png.rgb, 'png', (err, image) => {
+                lwip.open(imgs.png.rgb, "png", (err, image) => {
                     if (err) return done(err);
-                    image.writeFile(outpathJpeg, 'jpeg', {
+                    image.writeFile(outpathJpeg, "jpeg", {
                         quality: 50
                     }, done);
                 });
@@ -34,13 +34,13 @@ describe('stress tests', function () {
         });
     });
 
-    describe('open image 100 times (in parallel) and save to disk as png (high compression, interlaced)', () => {
-        it('should succeed', done => {
+    describe("open image 100 times (in parallel) and save to disk as png (high compression, interlaced)", () => {
+        it("should succeed", done => {
             async.times(100, (i, done) => {
-                lwip.open(imgs.jpg.rgb, 'jpeg', (err, image) => {
+                lwip.open(imgs.jpg.rgb, "jpeg", (err, image) => {
                     if (err) return done(err);
-                    image.writeFile(outpathPng, 'png', {
-                        compression: 'high',
+                    image.writeFile(outpathPng, "png", {
+                        compression: "high",
                         interlaced: true
                     }, done);
                 });
@@ -48,13 +48,13 @@ describe('stress tests', function () {
         });
     });
 
-    describe('open image 300 times (in parallel) and save to disk as png (fast compression, not interlaced)', () => {
-        it('should succeed', done => {
+    describe("open image 300 times (in parallel) and save to disk as png (fast compression, not interlaced)", () => {
+        it("should succeed", done => {
             async.times(300, (i, done) => {
-                lwip.open(imgs.gif.rgb, 'gif', (err, image) => {
+                lwip.open(imgs.gif.rgb, "gif", (err, image) => {
                     if (err) return done(err);
-                    image.writeFile(outpathPng, 'png', {
-                        compression: 'fast',
+                    image.writeFile(outpathPng, "png", {
+                        compression: "fast",
                         interlaced: false
                     }, done);
                 });
@@ -62,12 +62,12 @@ describe('stress tests', function () {
         });
     });
 
-    describe('open image 300 times (in parallel) and save to disk as gif (128 colors, not interlaced, transparent)', () => {
-        it('should succeed', done => {
+    describe("open image 300 times (in parallel) and save to disk as gif (128 colors, not interlaced, transparent)", () => {
+        it("should succeed", done => {
             async.times(300, (i, done) => {
-                lwip.open(imgs.png.trans, 'png', (err, image) => {
+                lwip.open(imgs.png.trans, "png", (err, image) => {
                     if (err) return done(err);
-                    image.writeFile(outpathGif, 'gif', {
+                    image.writeFile(outpathGif, "gif", {
                         colors: 128,
                         transparency: true,
                         threshold: 60
@@ -77,35 +77,35 @@ describe('stress tests', function () {
         });
     });
 
-    describe('7 random manipulations for 50 images (in parallel)', () => {
-        it('should succeed', done => {
+    describe("7 random manipulations for 50 images (in parallel)", () => {
+        it("should succeed", done => {
             async.times(50, (i, done) => {
-                lwip.open(imgs.jpg.rgb, 'jpeg', (err, image) => {
+                lwip.open(imgs.jpg.rgb, "jpeg", (err, image) => {
                     if (err) return done(err);
                     const batch = image.batch();
                     const ops = utils.generateRandomBatch(batch, 7);
-                    batch.writeFile(join(tmpDir, 'stress-rnd-' + i + '.jpg'), 'jpeg', {
+                    batch.writeFile(join(tmpDir, "stress-rnd-" + i + ".jpg"), "jpeg", {
                         quality: 50
                     }, err => {
                         if (err) return done(err);
-                        const data = ops.join('\n');
-                        fs.writeFile(join(tmpDir, 'stress-rnd-' + i + '.txt'), data, done);
+                        const data = ops.join("\n");
+                        fs.writeFile(join(tmpDir, "stress-rnd-" + i + ".txt"), data, done);
                     });
                 });
             }, done);
         });
     });
 
-    describe('rotate an image 30 times (up to 90degs) (1)', () => {
-        it('should succeed', done => {
+    describe("rotate an image 30 times (up to 90degs) (1)", () => {
+        it("should succeed", done => {
             const a = 3;
-            lwip.open(imgs.jpg.rgb, 'jpeg', (err, image) => {
+            lwip.open(imgs.jpg.rgb, "jpeg", (err, image) => {
                 if (err) return done(err);
                 async.timesSeries(90 / a, (i, done) => {
                     image.rotate(a, utils.getRandomColor(), done);
                 }, err => {
                     if (err) return done(err);
-                    image.writeFile(outpathJpeg, 'jpeg', {
+                    image.writeFile(outpathJpeg, "jpeg", {
                         quality: 90
                     }, done);
                 });
@@ -113,17 +113,17 @@ describe('stress tests', function () {
         });
     });
 
-    describe('rotate an image 30 times (up to 90degs) (2)', () => {
-        it('should succeed', done => {
+    describe("rotate an image 30 times (up to 90degs) (2)", () => {
+        it("should succeed", done => {
             const a = 3;
-            lwip.open(imgs.png.trans, 'png', (err, image) => {
+            lwip.open(imgs.png.trans, "png", (err, image) => {
                 if (err) return done(err);
                 async.timesSeries(90 / a, (i, done) => {
                     image.rotate(a, utils.getRandomColor(), done);
                 }, err => {
                     if (err) return done(err);
-                    image.writeFile(outpathPng, 'png', {
-                        compression: 'fast',
+                    image.writeFile(outpathPng, "png", {
+                        compression: "fast",
                         interlaced: false
                     }, done);
                 });
@@ -131,36 +131,36 @@ describe('stress tests', function () {
         });
     });
 
-    describe('25 random manipulations on one image (1)', () => {
-        it('should succeed', done => {
-            lwip.open(imgs.png.rgb, 'png', (err, image) => {
+    describe("25 random manipulations on one image (1)", () => {
+        it("should succeed", done => {
+            lwip.open(imgs.png.rgb, "png", (err, image) => {
                 if (err) return done(err);
                 const batch = image.batch();
                 const ops = utils.generateRandomBatch(batch, 25);
-                batch.writeFile(join(tmpDir, 'stress-25rnd.jpg'), 'jpeg', {
+                batch.writeFile(join(tmpDir, "stress-25rnd.jpg"), "jpeg", {
                     quality: 85
                 }, err => {
                     if (err) return done(err);
-                    const data = ops.join('\n');
-                    fs.writeFile(join(tmpDir, 'stress-25rnd.jpg.txt'), data, done);
+                    const data = ops.join("\n");
+                    fs.writeFile(join(tmpDir, "stress-25rnd.jpg.txt"), data, done);
                 });
             });
         });
     });
 
-    describe('25 random manipulations on one image (2)', () => {
-        it('should succeed', done => {
-            lwip.open(imgs.png.trans, 'png', (err, image) => {
+    describe("25 random manipulations on one image (2)", () => {
+        it("should succeed", done => {
+            lwip.open(imgs.png.trans, "png", (err, image) => {
                 if (err) return done(err);
                 const batch = image.batch();
                 const ops = utils.generateRandomBatch(batch, 25);
-                batch.writeFile(join(tmpDir, 'stress-25rnd.png'), 'png', {
-                    compression: 'fast',
+                batch.writeFile(join(tmpDir, "stress-25rnd.png"), "png", {
+                    compression: "fast",
                     interlaced: false
                 }, err => {
                     if (err) return done(err);
-                    const data = ops.join('\n');
-                    fs.writeFile(join(tmpDir, 'stress-25rnd.png.txt'), data, done);
+                    const data = ops.join("\n");
+                    fs.writeFile(join(tmpDir, "stress-25rnd.png.txt"), data, done);
                 });
             });
         });

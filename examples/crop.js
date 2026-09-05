@@ -1,16 +1,16 @@
-import lwip from '../index.js';
+import lwip from "../index.js";
 
 /**
  * Example for using LWIP to crop an image.
  */
 
 
-lwip.open('lena.jpg', (err, image) => {
+lwip.open("lena.jpg", (err, image) => {
     if (err) return console.log(err);
     image.batch()
         .crop(400, 400)
-        .writeFile('lena_crop.jpg', err => {
+        .writeFile("lena_crop.jpg", err => {
             if (err) return console.log(err);
-            console.log('done');
+            console.log("done");
         });
 });

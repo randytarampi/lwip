@@ -1,13 +1,13 @@
 // methods should throw errors when arguments are invalid
 
 
-import lwip from '../../index.js';
-import imgs from '../imgs.js';
+import lwip from "../../index.js";
+import imgs from "../imgs.js";
 
 // methods should throw errors when arguments are invalid
 
 
-describe('batch.resize arguments validation', () => {
+describe("batch.resize arguments validation", () => {
 
     let batch;
     before(done => {
@@ -17,9 +17,9 @@ describe('batch.resize arguments validation', () => {
         });
     });
 
-    describe('invalid interpolation', () => {
-        it('should throw an error', () => {
-            batch.resize.bind(batch, 100, 100, 'foo').should.throwError();
+    describe("invalid interpolation", () => {
+        it("should throw an error", () => {
+            batch.resize.bind(batch, 100, 100, "foo").should.throwError();
         });
     });
 });

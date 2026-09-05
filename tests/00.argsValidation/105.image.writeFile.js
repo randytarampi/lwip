@@ -1,13 +1,13 @@
 // methods should throw errors when arguments are invalid
 
 
-import lwip from '../../index.js';
-import imgs from '../imgs.js';
+import lwip from "../../index.js";
+import imgs from "../imgs.js";
 
 // methods should throw errors when arguments are invalid
 
 
-describe('image.writeFile arguments validation', () => {
+describe("image.writeFile arguments validation", () => {
 
     let image;
     before(done => {
@@ -17,117 +17,117 @@ describe('image.writeFile arguments validation', () => {
         });
     });
 
-    describe('invalid encoding format', () => {
-        it('should throw an error', () => {
-            image.writeFile.bind(image, 'res.jpg', 'jjpeg', () => {}).should.throwError();
+    describe("invalid encoding format", () => {
+        it("should throw an error", () => {
+            image.writeFile.bind(image, "res.jpg", "jjpeg", () => {}).should.throwError();
         });
     });
 
-    describe('JPEG params', () => {
+    describe("JPEG params", () => {
 
-        describe('invalid quality', () => {
-            it('should throw an error', () => {
-                image.writeFile.bind(image, 'res.jpg', 'jpeg', {
-                    quality: 'foo'
-                }, () => {}).should.throwError();
-            });
-        });
-
-    });
-
-    describe('PNG params', () => {
-
-        describe('invalid compression', () => {
-            it('should throw an error', () => {
-                image.writeFile.bind(image, 'res.jpg', 'png', {
-                    compression: 'foo'
-                }, () => {}).should.throwError();
-            });
-        });
-
-        describe('invalid interlaced', () => {
-            it('should throw an error', () => {
-                image.writeFile.bind(image, 'res.jpg', 'png', {
-                    interlaced: 'foo'
-                }, () => {}).should.throwError();
-            });
-        });
-
-        describe('invalid transparency', () => {
-            it('should throw an error', () => {
-                image.writeFile.bind(image, 'res.jpg', 'png', {
-                    transparency: 'foo'
+        describe("invalid quality", () => {
+            it("should throw an error", () => {
+                image.writeFile.bind(image, "res.jpg", "jpeg", {
+                    quality: "foo"
                 }, () => {}).should.throwError();
             });
         });
 
     });
 
-    describe('GIF params', () => {
+    describe("PNG params", () => {
 
-        describe('invalid params', () => {
+        describe("invalid compression", () => {
+            it("should throw an error", () => {
+                image.writeFile.bind(image, "res.jpg", "png", {
+                    compression: "foo"
+                }, () => {}).should.throwError();
+            });
+        });
 
-            describe('invalid colors (wrong type)', () => {
-                it('should throw an error', () => {
-                    image.writeFile.bind(image, 'res.gif', 'gif', {
-                        colors: 'foo'
+        describe("invalid interlaced", () => {
+            it("should throw an error", () => {
+                image.writeFile.bind(image, "res.jpg", "png", {
+                    interlaced: "foo"
+                }, () => {}).should.throwError();
+            });
+        });
+
+        describe("invalid transparency", () => {
+            it("should throw an error", () => {
+                image.writeFile.bind(image, "res.jpg", "png", {
+                    transparency: "foo"
+                }, () => {}).should.throwError();
+            });
+        });
+
+    });
+
+    describe("GIF params", () => {
+
+        describe("invalid params", () => {
+
+            describe("invalid colors (wrong type)", () => {
+                it("should throw an error", () => {
+                    image.writeFile.bind(image, "res.gif", "gif", {
+                        colors: "foo"
                     }, () => {}).should.throwError();
                 });
             });
 
-            describe('invalid colors (<2)', () => {
-                it('should throw an error', () => {
-                    image.writeFile.bind(image, 'res.gif', 'gif', {
+            describe("invalid colors (<2)", () => {
+                it("should throw an error", () => {
+                    image.writeFile.bind(image, "res.gif", "gif", {
                         colors: 1
                     }, () => {}).should.throwError();
                 });
             });
 
-            describe('invalid colors (>256)', () => {
-                it('should throw an error', () => {
-                    image.writeFile.bind(image, 'res.gif', 'gif', {
+            describe("invalid colors (>256)", () => {
+                it("should throw an error", () => {
+                    image.writeFile.bind(image, "res.gif", "gif", {
                         colors: 257
                     }, () => {}).should.throwError();
                 });
             });
 
-            describe('invalid interlaced', () => {
-                it('should throw an error', () => {
-                    image.writeFile.bind(image, 'res.gif', 'gif', {
-                        interlaced: 'foo'
+            describe("invalid interlaced", () => {
+                it("should throw an error", () => {
+                    image.writeFile.bind(image, "res.gif", "gif", {
+                        interlaced: "foo"
                     }, () => {}).should.throwError();
                 });
             });
 
-            describe('invalid transparency', () => {
-                it('should throw an error', () => {
-                    image.writeFile.bind(image, 'res.gif', 'gif', {
-                        transparency: 'foo'
+            describe("invalid transparency", () => {
+                it("should throw an error", () => {
+                    image.writeFile.bind(image, "res.gif", "gif", {
+                        transparency: "foo"
                     }, () => {}).should.throwError();
                 });
             });
 
-            describe('invalid threshold (wrong type)', () => {
-                it('should throw an error', () => {
-                    image.writeFile.bind(image, 'res.gif', 'gif', {
+            describe("invalid threshold (wrong type)", () => {
+                it("should throw an error", () => {
+                    image.writeFile.bind(image, "res.gif", "gif", {
                         transparency: true,
-                        threshold: 'foo'
+                        threshold: "foo"
                     }, () => {}).should.throwError();
                 });
             });
 
-            describe('invalid threshold (<0)', () => {
-                it('should throw an error', () => {
-                    image.writeFile.bind(image, 'res.gif', 'gif', {
+            describe("invalid threshold (<0)", () => {
+                it("should throw an error", () => {
+                    image.writeFile.bind(image, "res.gif", "gif", {
                         transparency: true,
                         threshold: -1
                     }, () => {}).should.throwError();
                 });
             });
 
-            describe('invalid threshold (>100)', () => {
-                it('should throw an error', () => {
-                    image.writeFile.bind(image, 'res.gif', 'gif', {
+            describe("invalid threshold (>100)", () => {
+                it("should throw an error", () => {
+                    image.writeFile.bind(image, "res.gif", "gif", {
                         transparency: true,
                         threshold: 101
                     }, () => {}).should.throwError();

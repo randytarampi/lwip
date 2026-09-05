@@ -1,12 +1,12 @@
-import async from 'async';
-import lwip from '../index.js';
+import async from "async";
+import lwip from "../index.js";
 
 /**
  * Example for using LWIP to create a hue gradient mosiac.
  */
 
 
-lwip.open('lena.jpg', (err, image) => {
+lwip.open("lena.jpg", (err, image) => {
     if (err) return console.log(err);
 
     image.scale(0.15, (err, image) => {
@@ -32,8 +32,8 @@ lwip.open('lena.jpg', (err, image) => {
                 image.clone((err, clone) => {
                     if (err) return done(err);
                     const batch = clone.batch();
-                    if (i % 2 === 1) batch.mirror('x');
-                    if (i % (2 * COLS) >= COLS) batch.mirror('y');
+                    if (i % 2 === 1) batch.mirror("x");
+                    if (i % (2 * COLS) >= COLS) batch.mirror("y");
                     batch.hue(h);
                     batch.exec((err, clone) => {
                         if (err) return done(err);
@@ -56,9 +56,9 @@ lwip.open('lena.jpg', (err, image) => {
                     });
                 }, err => {
                     if (err) return console.log(err);
-                    canvas.writeFile('lena_paste_mosiac.jpg', err => {
+                    canvas.writeFile("lena_paste_mosiac.jpg", err => {
                         if (err) return console.log(err);
-                        console.log('done');
+                        console.log("done");
                     });
                 });
             });

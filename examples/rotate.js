@@ -1,11 +1,11 @@
-import lwip from '../index.js';
+import lwip from "../index.js";
 
 /**
  * Example for using LWIP to rotate an image.
  */
 
 
-lwip.open('lena.jpg', (err, image) => {
+lwip.open("lena.jpg", (err, image) => {
     if (err) return console.log(err);
     image.batch()
         .rotate(45, {
@@ -13,8 +13,8 @@ lwip.open('lena.jpg', (err, image) => {
             g: 55,
             b: 40
         })
-        .writeFile('lena_rotate.gif', err => {
+        .writeFile("lena_rotate.gif", err => {
             if (err) return console.log(err);
-            console.log('done');
+            console.log("done");
         });
 });

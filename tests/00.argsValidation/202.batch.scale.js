@@ -1,13 +1,13 @@
 // methods should throw errors when arguments are invalid
 
 
-import lwip from '../../index.js';
-import imgs from '../imgs.js';
+import lwip from "../../index.js";
+import imgs from "../imgs.js";
 
 // methods should throw errors when arguments are invalid
 
 
-describe('batch.scale arguments validation', () => {
+describe("batch.scale arguments validation", () => {
 
     let batch;
     before(done => {
@@ -17,9 +17,9 @@ describe('batch.scale arguments validation', () => {
         });
     });
 
-    describe('invalid interpolation', () => {
-        it('should throw an error', () => {
-            batch.scale.bind(batch, 0.5, 0.5, 'foo').should.throwError();
+    describe("invalid interpolation", () => {
+        it("should throw an error", () => {
+            batch.scale.bind(batch, 0.5, 0.5, "foo").should.throwError();
         });
     });
 });

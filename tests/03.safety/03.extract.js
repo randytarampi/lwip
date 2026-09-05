@@ -1,12 +1,12 @@
-import { dirname, join } from 'node:path';
-import lwip from '../../index.js';
-import imgs from '../imgs.js';
-import { fileURLToPath } from 'node:url';
+import { dirname, join } from "node:path";
+import lwip from "../../index.js";
+import imgs from "../imgs.js";
+import { fileURLToPath } from "node:url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-describe('extract correct behavior', () => {
+describe("extract correct behavior", () => {
 
-    const tmpDir = join(__dirname, '../results');
+    const tmpDir = join(__dirname, "../results");
     let image;
 
     beforeEach(done => {
@@ -16,15 +16,15 @@ describe('extract correct behavior', () => {
         });
     });
 
-    describe('image.extract', () => {
-        it('should extract the sub-image at the correct state', done => {
+    describe("image.extract", () => {
+        it("should extract the sub-image at the correct state", done => {
             image.extract(50, 50, 339, 299, (err, extimg) => {
                 // this callback is called asynchronously,
                 // so 'hue' is called before this callback is run,
                 // but still we want to make sure the extracted image has the
                 // original hue.
                 if (err) return done(err);
-                extimg.writeFile(join(tmpDir, 'extract_behaviour_SHOULD_HAVE_ORIGINAL_HUE.jpg'), done);
+                extimg.writeFile(join(tmpDir, "extract_behaviour_SHOULD_HAVE_ORIGINAL_HUE.jpg"), done);
             });
             image.hue(100, err => {
                 if (err) return done(err);

@@ -1,14 +1,14 @@
 // methods should throw errors when arguments are invalid
 
 
-import assert from 'node:assert';
-import lwip from '../../index.js';
-import imgs from '../imgs.js';
+import assert from "node:assert";
+import lwip from "../../index.js";
+import imgs from "../imgs.js";
 
 // methods should throw errors when arguments are invalid
 
 
-describe('batch.setPixel arguments validation', () => {
+describe("batch.setPixel arguments validation", () => {
 
     let batch;
     beforeEach(done => {
@@ -18,11 +18,11 @@ describe('batch.setPixel arguments validation', () => {
         });
     });
 
-    describe('pixel exceeds dimensions', () => {
+    describe("pixel exceeds dimensions", () => {
 
-        describe('at the time of exec', () => {
-            it('should return an error', done => {
-                batch.setPixel.bind(batch, 999, 999, 'yellow').should.not.throwError();
+        describe("at the time of exec", () => {
+            it("should return an error", done => {
+                batch.setPixel.bind(batch, 999, 999, "yellow").should.not.throwError();
                 batch.exec(err => {
                     // there should be an error message
                     assert(!!err);
@@ -31,10 +31,10 @@ describe('batch.setPixel arguments validation', () => {
             });
         });
 
-        describe('before exec', () => {
-            it('should not return an error', done => {
+        describe("before exec", () => {
+            it("should not return an error", done => {
                 batch.resize(1000, 1000);
-                batch.setPixel.bind(batch, 999, 999, 'yellow').should.not.throwError();
+                batch.setPixel.bind(batch, 999, 999, "yellow").should.not.throwError();
                 batch.exec(err => {
                     // there should not be an error message
                     assert(!err);

@@ -1,4 +1,4 @@
-import lwip from '../index.js';
+import lwip from "../index.js";
 
 /**
  * Example for using LWIP to manually setting pixels in an image.
@@ -7,7 +7,7 @@ import lwip from '../index.js';
  */
 
 
-const output = 'rainbow.png',
+const output = "rainbow.png",
     width = 360,
     height = 360,
     color = {h: 0, s: 100, l: 50};
