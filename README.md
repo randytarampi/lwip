@@ -3,7 +3,7 @@
 [![npm versions](https://img.shields.io/npm/v/@randy.tarampi/lwip.svg?style=flat-square)](https://www.npmjs.org/package/@randy.tarampi/lwip)
 [![npm downloads](https://img.shields.io/npm/dt/@randy.tarampi/lwip.svg?style=flat-square)](https://www.npmjs.com/package/@randy.tarampi/lwip)
 [![npm license](https://img.shields.io/npm/l/@randy.tarampi/lwip.svg?registry_uri=https%3A%2F%2Fregistry.npmjs.com&style=flat-square)](https://www.npmjs.com/package/@randy.tarampi/lwip)
-[![CI](https://github.com/randytarampi/lwip/actions/workflows/ci.yml/badge.svg)](https://github.com/randytarampi/lwip/actions/workflows/ci.yml)
+[![CI](https://img.shields.io/github/actions/workflow/status/randytarampi/lwip/ci.yml?branch=main&style=flat-square&label=CI)](https://github.com/randytarampi/lwip/actions/workflows/ci.yml) [![CodeQL](https://img.shields.io/github/actions/workflow/status/randytarampi/lwip/codeql.yml?branch=main&style=flat-square&label=CodeQL)](https://github.com/randytarampi/lwip/security/code-scanning)
 
 
 [![Install @randy.tarampi/lwip](https://nodeico.herokuapp.com/@randy.tarampi/lwip.svg)](https://www.npmjs.com/package/@randy.tarampi/lwip)
