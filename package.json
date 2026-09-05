@@ -44,7 +44,6 @@
   },
   "gypfile": true,
   "homepage": "https://github.com/randytarampi/lwip",
-  "type": "module",
   "keywords": [
     "alpha",
     "batch",
