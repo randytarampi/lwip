@@ -27,6 +27,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: yarn
       - run: corepack enable
+        shell: bash
       - name: Cache Yarn
         uses: actions/cache@v6
         with:
@@ -40,8 +41,11 @@ jobs:
         env:
           YARN_ENABLE_HARDENED_MODE: false
         run: yarn install --immutable --network-timeout 600000
+        shell: bash
       - run: yarn build:native
+        shell: bash
       - run: yarn verify
+        shell: bash
       - name: Coveralls
         if: runner.os == 'Linux'
         uses: coverallsapp/github-action@v2
