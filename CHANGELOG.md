@@ -1,3 +1,10 @@
+## [3.0.21](https://github.com/randytarampi/lwip/compare/v3.0.20...v3.0.21) (2026-09-05)
+
+
+### Bug Fixes
+
+* **ci:** configure Windows native build ([bfb68fc](https://github.com/randytarampi/lwip/commit/bfb68fc9c404ab07160a9c28c1626cb236603f64))
+
 ## [3.0.20](https://github.com/randytarampi/lwip/compare/v3.0.19...v3.0.20) (2026-09-05)
 
 
