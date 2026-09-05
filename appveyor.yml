@@ -5,10 +5,12 @@ init:
   - git config --global core.autocrlf input
 
 image: Visual Studio 2022
+platform: x64
 
 environment:
   matrix:
-    - nodejs_version: 24
+    - nodejs_version: 24.18.0
+      GYP_MSVS_VERSION: 2022
 
 install:
   - ps: Install-Product node $env:nodejs_version
