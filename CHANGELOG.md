@@ -1,3 +1,18 @@
+## [3.0.20](https://github.com/randytarampi/lwip/compare/v3.0.19...v3.0.20) (2026-09-05)
+
+
+### Bug Fixes
+
+* align ESLint configuration with quote style ([a2214fc](https://github.com/randytarampi/lwip/commit/a2214fcb73754ac794cadc28a271a6d49c9f7f89))
+* complete Node 24 native build compatibility ([cf8bd9b](https://github.com/randytarampi/lwip/commit/cf8bd9b545b8663ed30c0542a128cd53d938e025))
+* correct image module semicolon placement ([c92f19b](https://github.com/randytarampi/lwip/commit/c92f19bda92f205193422f3080ca77001d2570d3))
+* declare lwip modules as ESM ([fd25a10](https://github.com/randytarampi/lwip/commit/fd25a10802b2809128cb30c13c4be95829b6fe7f))
+* remove duplicate module type declaration ([59c2e98](https://github.com/randytarampi/lwip/commit/59c2e9800b561aae79c4e41b6aab1652ca31551f))
+* remove obsolete image export semicolon ([ff8ccde](https://github.com/randytarampi/lwip/commit/ff8ccded0ebd86fa0cc5e90e68f150c9e225f8ca))
+* restore ESLint 10 configuration ([c15e9d1](https://github.com/randytarampi/lwip/commit/c15e9d172c38d29e392707b391a312c618433c5a))
+* restore Yarn native build tooling ([5768048](https://github.com/randytarampi/lwip/commit/5768048670130af417e4669ee497e4642c1084a7))
+* use mkdirp compatible with current dependency ([faee245](https://github.com/randytarampi/lwip/commit/faee245b51330c140efc6707d2414b7a2b98b1cb))
+
 ## [3.0.19](https://github.com/randytarampi/lwip/compare/v3.0.18...v3.0.19) (2026-06-28)
 
 
