@@ -13,8 +13,11 @@ jobs:
       fail-fast: false
       matrix:
         # Node 24.18.0 is pinned because Node 24.20 has a native-addon teardown crash that kills node-gyp-built addons like this one; unpinned `24` silently broke the suite.
-        node-version: [20, 22, 24.18.0]
-    runs-on: ubuntu-latest
+        node-version: [22, 24.18.0]
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    env:
+      GYP_MSVS_VERSION: ${{ matrix.os == 'windows-latest' && '2022' || '' }}
     steps:
       - uses: actions/checkout@v7
         with:
@@ -33,52 +36,19 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             yarn-${{ runner.os }}-
-      - run: yarn install --no-immutable
-      - run: yarn verify
-      - run: yarn lint:cpp
+      - name: Install dependencies
+        env:
+          YARN_ENABLE_HARDENED_MODE: false
+        run: yarn install --immutable --network-timeout 600000
       - run: yarn build:native
+      - run: yarn verify
       - name: Coveralls
+        if: runner.os == 'Linux'
         uses: coverallsapp/github-action@v2
         with:
           file: coverage/lcov.info
           flag-name: ${{ matrix.node-version }}
           parallel: true
-
-  windows:
-    runs-on: windows-latest
-    env:
-      GYP_MSVS_VERSION: 2022
-    steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-node@v7
-        with:
-          # Node 24.18.0 avoids the native-addon teardown crash in newer Node 24 releases.
-          node-version: 24.18.0
-          cache: yarn
-      - run: corepack enable
-      - name: Install dependencies
-        env:
-          YARN_ENABLE_HARDENED_MODE: false
-        run: yarn install --immutable --network-timeout 600000
-      - run: yarn build:native
-      - run: yarn verify
-
-  macos:
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-node@v7
-        with:
-          # Node 24.18.0 avoids the native-addon teardown crash in newer Node 24 releases.
-          node-version: 24.18.0
-          cache: yarn
-      - run: corepack enable
-      - name: Install dependencies
-        env:
-          YARN_ENABLE_HARDENED_MODE: false
-        run: yarn install --immutable --network-timeout 600000
-      - run: yarn build:native
-      - run: yarn verify
 
   appveyor:
     if: ${{ github.event_name == 'push' }}
