@@ -1,5 +1,5 @@
 import { dirname, join } from "node:path";
-import { mkdirp } from "mkdirp";
+import mkdirp from "mkdirp";
 import lwip from "../../index.js";
 import utils from "../utils.js";
 import imgs from "../imgs.js";

@@ -1,6 +1,6 @@
 import { dirname, join } from "node:path";
 import assert from "node:assert";
-import { mkdirp } from "mkdirp";
+import mkdirp from "mkdirp";
 import lwip from "../../index.js";
 import { fileURLToPath } from "node:url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
