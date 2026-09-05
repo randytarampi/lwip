@@ -1,3 +1,10 @@
+## [3.0.22](https://github.com/randytarampi/lwip/compare/v3.0.21...v3.0.22) (2026-09-05)
+
+
+### Bug Fixes
+
+* **ci:** use available Node 24 image package ([dccd97f](https://github.com/randytarampi/lwip/commit/dccd97f3001d4a579ab10ad330c99dff6959a2bc))
+
 ## [3.0.21](https://github.com/randytarampi/lwip/compare/v3.0.20...v3.0.21) (2026-09-05)
 
 
