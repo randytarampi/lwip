@@ -1,6 +1,6 @@
 import { dirname, join } from "node:path";
 import assert from "node:assert";
-import mkdirp from "mkdirp";
+import { mkdirp } from "mkdirp";
 import lwip from "../../index.js";
 import imgs from "../imgs.js";
 import { fileURLToPath } from "node:url";

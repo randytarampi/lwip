@@ -1,7 +1,7 @@
 import { dirname, join } from "node:path";
 import fs from "node:fs";
 import async from "async";
-import mkdirp from "mkdirp";
+import { mkdirp } from "mkdirp";
 import lwip from "../../index.js";
 import utils from "../utils.js";
 import imgs from "../imgs.js";
