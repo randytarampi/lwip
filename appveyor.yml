@@ -1,0 +1,26 @@
+stack: none
+
+# Fix line endings in Windows. (runs before repo cloning)
+init:
+  - git config --global core.autocrlf input
+
+image: Visual Studio 2022
+
+environment:
+  matrix:
+    - nodejs_version: 24
+
+install:
+  - ps: Install-Product node $env:nodejs_version
+  - node --version
+  - corepack enable
+  - corepack yarn --version
+  - corepack yarn install --immutable
+
+test_script:
+  - corepack yarn build:native
+  - corepack yarn verify
+
+build: off
+
+version: "{build}"
