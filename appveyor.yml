@@ -6,10 +6,15 @@ init:
 
 image: Visual Studio 2022
 platform: x64
+shallow_clone: true
+
+cache:
+  - "node_modules -> yarn.lock"
+  - "%LOCALAPPDATA%\\Yarn\\Cache -> yarn.lock"
 
 environment:
   matrix:
-    - nodejs_version: 24
+    - nodejs_version: 24.18.0
       GYP_MSVS_VERSION: 2022
       CL: /Zc:strictStrings-
 
