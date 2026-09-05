@@ -12,6 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        # Node 24.18.0 is pinned because Node 24.20 has a native-addon teardown crash that kills node-gyp-built addons like this one; unpinned `24` silently broke the suite.
         node-version: [20, 22, 24.18.0]
     runs-on: ubuntu-latest
     steps:
