@@ -100,9 +100,13 @@ void EncodeToPngBufferWorker::Execute () {
     );
 
     if (_metadata != NULL) {
+        // NOTE-RT: `png_text.key` is `png_charp` (non-const `char *`), and MSVC rejects binding a
+        // string literal to it (C2440) where GCC only warns — found live on AppVeyor's Windows
+        // image. Copy into a writable buffer for libpng to own; it does not mutate the key.
+        char metadataKey[] = "lwip_data";
         png_text metadata;
         metadata.compression = PNG_TEXT_COMPRESSION_NONE;
-        metadata.key = "lwip_data";
+        metadata.key = metadataKey;
         metadata.text = _metadata;
         png_set_text(png_ptr, info_ptr, &metadata, 1);
     }
