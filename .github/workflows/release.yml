@@ -22,6 +22,18 @@ jobs:
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Verify the CI run matches this commit
+        run: |
+          if [ "${{ github.event.workflow_run.head_sha }}" != "$(git rev-parse HEAD)" ]; then
+            echo "::error::CI run head ${{ github.event.workflow_run.head_sha }} does not match checkout $(git rev-parse HEAD) - skipping release"
+            exit 1
+          fi
+
       # NOTE-RT: CI waits for AppVeyor in parallel; re-check it before publishing.
       - name: Re-verify the AppVeyor build
         shell: bash
@@ -54,11 +66,6 @@ jobs:
           done
           echo "::error::AppVeyor build for ${sha} did not finish in 45 minutes"
           exit 1
-
-      - name: Checkout
-        uses: actions/checkout@v7
-        with:
-          fetch-depth: 0
 
       - name: Setup Node.js 24
         uses: actions/setup-node@v7
