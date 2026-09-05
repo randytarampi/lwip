@@ -1,0 +1,4 @@
+name: lwip-codeql
+
+paths-ignore:
+  - src/lib/**

@@ -30,5 +30,6 @@ jobs:
       - uses: github/codeql-action/init@v3
         with:
           languages: javascript,c-cpp
+          config-file: ./.github/codeql-config.yml
       - run: yarn build:native
       - uses: github/codeql-action/analyze@v3
