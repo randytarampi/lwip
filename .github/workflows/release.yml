@@ -12,7 +12,38 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  appveyor:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Wait for the AppVeyor build to finish
+        shell: bash
+        run: |
+          set -euo pipefail
+          sha="${{ github.event.workflow_run.head_sha }}"
+          slug="randytarampi/lwip"
+          echo "Waiting for the AppVeyor build of ${sha}"
+          for i in $(seq 1 40); do
+            body=$(curl -sf --max-time 30 "https://ci.appveyor.com/api/projects/${slug}/build?commit=${sha}" || true)
+            status=$(printf '%s' "$body" | SHA="$sha" python3 -c 'import json, os, sys; d=json.load(sys.stdin); b=d.get("build") or {}; print(b.get("status") if b.get("commitId") == os.environ["SHA"] else "notfound")' 2>/dev/null || echo "notfound")
+            if [ "$status" = "notfound" ]; then
+              body=$(curl -sf --max-time 30 "https://ci.appveyor.com/api/projects/${slug}" || true)
+              status=$(printf '%s' "$body" | SHA="$sha" python3 -c 'import json, os, sys; d=json.load(sys.stdin); builds=d.get("builds") or []; b=d.get("build") or next((item for item in builds if item.get("commitId") == os.environ["SHA"]), {}); print(b.get("status") if b.get("commitId") == os.environ["SHA"] else "notfound")' 2>/dev/null || echo "notfound")
+            fi
+            echo "poll ${i}: ${status}"
+            case "$status" in
+              success) exit 0 ;;
+              failed|error|cancelled) echo "::error::AppVeyor build ${status} for ${sha}"; exit 1 ;;
+            esac
+            sleep 60
+          done
+          echo "::error::AppVeyor build for ${sha} did not finish in 40 minutes"
+          exit 1
+
   release:
+    needs: [appveyor]
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     environment: production
