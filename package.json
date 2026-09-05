@@ -92,6 +92,7 @@
     "lint": "npm run lint:js && npm run lint:cpp",
     "lint:cpp": "node-cpplint cpp,h src/**/* $(grep ^.*$ CPPLINT.cfg | sed 's/filter=/filters=/g' | awk '{print \"--\"$0}' ORS=' ' | tr '=' ' ' | tr ',' ' ' | tr '/' '-')\n",
     "lint:js": "eslint .",
+    "verify": "yarn lint && yarn test",
     "pretest": "npm run lint:js",
     "test": "mocha --config ./tests/.mocharc.cjs tests",
     "prepare": "husky"
