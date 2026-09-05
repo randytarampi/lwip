@@ -94,7 +94,7 @@
     "lint:js": "eslint .",
     "verify": "yarn lint && yarn test",
     "pretest": "npm run lint:js",
-    "test": "mocha --config ./tests/.mocharc.cjs tests",
+    "test": "nyc --check-coverage=false mocha --config ./tests/.mocharc.cjs tests",
     "prepare": "husky"
   },
   "typings": "typings.d.ts",

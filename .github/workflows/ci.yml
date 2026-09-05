@@ -39,6 +39,7 @@ jobs:
       - name: Coveralls
         uses: coverallsapp/github-action@v2
         with:
+          file: coverage/lcov.info
           flag-name: ${{ matrix.node-version }}
           parallel: true
 

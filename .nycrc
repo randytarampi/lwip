@@ -4,6 +4,7 @@
     "cmake-build-debug/**",
     "examples/**",
     "node_modules/**",
+    ".yarn/**",
     "coverage/**",
     ".nyc_output/**",
     "tests/**",
