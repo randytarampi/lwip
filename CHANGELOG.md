@@ -1,3 +1,10 @@
+## [3.0.23](https://github.com/randytarampi/lwip/compare/v3.0.22...v3.0.23) (2026-09-05)
+
+
+### Bug Fixes
+
+* **encoder:** copy the png text key into a writable buffer ([0ced91d](https://github.com/randytarampi/lwip/commit/0ced91d48070634071a4a17cf903bc83ab840a18))
+
 ## [3.0.22](https://github.com/randytarampi/lwip/compare/v3.0.21...v3.0.22) (2026-09-05)
 
 
