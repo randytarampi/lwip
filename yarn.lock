@@ -764,7 +764,7 @@ __metadata:
     mkdirp: "npm:^1.0.4"
     mocha: "npm:^8.4.0"
     mocha-junit-reporter: "npm:^2.0.0"
-    nan: "npm:^2.14.2"
+    nan: "npm:^2.27.0"
     node-cpplint: "npm:^0.4.0"
     node-gyp: "npm:^13.0.0"
     nyc: "npm:^15.1.0"
@@ -5586,7 +5586,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nan@npm:^2.14.2":
+"nan@npm:^2.27.0":
   version: 2.28.0
   resolution: "nan@npm:2.28.0"
   dependencies:
