@@ -76,6 +76,7 @@
     "transparency"
   ],
   "license": "MIT",
+  "type": "module",
   "main": "index.js",
   "publishConfig": {
     "access": "public"
