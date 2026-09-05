@@ -14,7 +14,7 @@ cache:
 
 environment:
   matrix:
-    - nodejs_version: 24.18.0
+    - nodejs_version: 24
       GYP_MSVS_VERSION: 2022
       CL: /Zc:strictStrings-
 
