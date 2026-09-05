@@ -37,11 +37,11 @@ feature, there should be an issue requesting this feature.
 0. Disscuss your intention to work on an issue in the issue itself.
 0. Fork lwip.
 0. You may want to read development notes in `DEVELOPMENT.md`.
-0. Your code should be based on the latest `version/x.x.x` branch, or `master`
+0. Your code should be based on the latest `version/x.x.x` branch, or `main`
    if no `version/x.x.x` branch is available. Ask to be sure.
    Before releasing a new version, a `version/x.x.x` branch will be opened, into
    which all feature branches for this version will be merged. Eventually this
-   version branch will be merged into `master`.
+   version branch will be merged into `main`.
 0. Your commits should describe your changes. Try not to make too many unrelated
    changes in one commit. Split them. Write descriptive commit logs.
 0. Include tests for your changes / new feature.

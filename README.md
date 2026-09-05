@@ -870,19 +870,19 @@ The native part of this module is compiled from source which uses either your na
 
 - Independent JPEG Group's free JPEG software:
   - [Website](http://www.ijg.org/)
-  - [Readme](https://github.com/randytarampi/lwip/blob/master/src/lib/jpeg/README)
+  - [Readme](https://github.com/randytarampi/lwip/blob/main/src/lib/jpeg/README)
 - `libpng`:
   - [Website](http://www.libpng.org/)
-  - [Readme](https://github.com/randytarampi/lwip/blob/master/src/lib/png/README)
+  - [Readme](https://github.com/randytarampi/lwip/blob/main/src/lib/png/README)
 - `zlib`:
   - [Website](http://www.zlib.net/)
-  - [Readme](https://github.com/randytarampi/lwip/blob/master/src/lib/zlib/README)
+  - [Readme](https://github.com/randytarampi/lwip/blob/main/src/lib/zlib/README)
 - The CImg Library
   - [Website](http://cimg.sourceforge.net/)
-  - [Readme](https://github.com/randytarampi/lwip/blob/master/src/lib/cimg/README.txt)
+  - [Readme](https://github.com/randytarampi/lwip/blob/main/src/lib/cimg/README.txt)
 - `giflib`
   - [Website](http://giflib.sourceforge.net/)
-  - [Readme](https://github.com/randytarampi/lwip/blob/master/src/lib/gif/README)
+  - [Readme](https://github.com/randytarampi/lwip/blob/main/src/lib/gif/README)
 
 
 ## License
