@@ -11,13 +11,14 @@ environment:
   matrix:
     - nodejs_version: 24.18.0
       GYP_MSVS_VERSION: 2022
+      CL: /Zc:strictStrings-
 
 install:
   - ps: Install-Product node $env:nodejs_version
   - node --version
   - corepack enable
   - corepack yarn --version
-  - corepack yarn install --immutable
+  - corepack yarn install --immutable --network-timeout 600000
 
 test_script:
   - corepack yarn build:native
