@@ -35,39 +35,6 @@ jobs:
             exit 1
           fi
 
-      # NOTE-RT: CI waits for AppVeyor in parallel; re-check it before publishing.
-      - name: Re-verify the AppVeyor build
-        shell: bash
-        run: |
-          set -euo pipefail
-          sha="${{ github.event.workflow_run.head_sha }}"
-          slug="randytarampi/lwip"
-          echo "Verifying the AppVeyor build of ${sha}"
-          for i in $(seq 1 45); do
-            response=$(mktemp)
-            trap 'rm -f "$response"' EXIT
-            curl -sf --max-time 30 "https://ci.appveyor.com/api/projects/${slug}" > "$response" || true
-            status=$(SHA="$sha" python3 - "$response" <<'PY'
-          import json
-          import os
-          import sys
-
-          with open(sys.argv[1], encoding="utf-8") as response:
-              data = json.load(response)
-          build = data.get("build") or {}
-          print(build.get("status") or "notfound" if (build.get("commitId") or "").lower() == os.environ["SHA"].lower() else "notfound")
-          PY
-            ) || status=notfound
-            echo "poll ${i}: ${status}"
-            case "$status" in
-              success) exit 0 ;;
-              failed|error|cancelled) echo "::error::AppVeyor build ${status} for ${sha}"; exit 1 ;;
-            esac
-            sleep 60
-          done
-          echo "::error::AppVeyor build for ${sha} did not finish in 45 minutes"
-          exit 1
-
       - name: Setup Node.js 24
         uses: actions/setup-node@v7
         with:
