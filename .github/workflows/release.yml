@@ -70,7 +70,8 @@ jobs:
       - name: Setup Node.js 24
         uses: actions/setup-node@v7
         with:
-          node-version: 24
+          # Node 24.18.0 is pinned because Node 24.20 has a native-addon teardown crash that kills node-gyp-built addons like this one; the release toolchain must match the tested toolchain so a release is not built in the broken-toolchain environment.
+          node-version: 24.18.0
           cache: yarn
           cache-dependency-path: yarn.lock
 
